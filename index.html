@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELKAN — Huevos Azules Mapuche</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul-prof: #0D2B3E;
+  --azul-med:  #1A4A6B;
+  --azul-cla:  #2E7DAA;
+  --huevo:     #6BBDD4;
+  --huevo-cla: #A8D8E8;
+  --huevo-bri: #C8EBF5;
+  --blanco:    #F0F8FC;
+  --crema:     #E8F4F8;
+  --gris-azul: #B0C8D4;
+  --ocre:      #C4892A;
+  --ocre-cla:  #E8B84B;
+  --tierra:    #3D2010;
+  --sombra:    rgba(13,43,62,0.2);
+  --sombra2:   rgba(13,43,62,0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lora',serif;background:var(--azul-prof);color:var(--blanco);min-height:100vh;overflow-x:hidden;}
+
+/* SCREENS */
+.screen{display:none;min-height:100vh;}
+.screen.active{display:block;}
+
+/* ══ PATTERN FONDO ══ */
+.pattern-bg{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Cpath d='M25 2 L48 25 L25 48 L2 25 Z' fill='none' stroke='%232E7DAA' stroke-width='0.5' opacity='0.2'/%3E%3Ccircle cx='25' cy='25' r='3' fill='%232E7DAA' opacity='0.12'/%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%232E7DAA' opacity='0.1'/%3E%3Ccircle cx='50' cy='0' r='1.5' fill='%232E7DAA' opacity='0.1'/%3E%3Ccircle cx='0' cy='50' r='1.5' fill='%232E7DAA' opacity='0.1'/%3E%3Ccircle cx='50' cy='50' r='1.5' fill='%232E7DAA' opacity='0.1'/%3E%3C/svg%3E");
+}
+
+/* ════════════════════
+   LOGIN
+════════════════════ */
+#screen-login{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:32px 20px;
+  background:var(--azul-prof);position:relative;overflow:hidden;
+}
+#screen-login::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Cpath d='M25 2 L48 25 L25 48 L2 25 Z' fill='none' stroke='%232E7DAA' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+/* Siluetas decorativas login */
+.login-hens{
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:8px;margin-bottom:16px;opacity:0.5;
+}
+
+.login-title{
+  font-family:'Cinzel',serif;font-size:3rem;font-weight:900;
+  color:var(--huevo-bri);letter-spacing:8px;text-align:center;
+  text-shadow:0 0 40px rgba(107,189,212,0.4);
+  position:relative;z-index:2;
+  animation:glow 3s ease-in-out infinite;
+}
+@keyframes glow{0%,100%{text-shadow:0 0 40px rgba(107,189,212,0.3);}50%{text-shadow:0 0 60px rgba(107,189,212,0.6);}}
+.login-sub{
+  font-size:0.72rem;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gris-azul);text-align:center;margin-top:4px;margin-bottom:6px;
+  font-style:italic;position:relative;z-index:2;
+}
+.login-divider{
+  width:100px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--huevo),transparent);
+  margin:14px auto;
+}
+.login-card{
+  background:rgba(26,74,107,0.5);
+  border:1px solid rgba(107,189,212,0.25);
+  border-radius:3px;padding:28px 24px;
+  width:100%;max-width:360px;
+  backdrop-filter:blur(12px);
+  position:relative;z-index:2;
+  box-shadow:0 24px 60px var(--sombra2);
+}
+.login-card::before{content:'◆';position:absolute;top:10px;left:14px;color:var(--huevo);font-size:0.5rem;opacity:0.5;}
+.login-card::after{content:'◆';position:absolute;bottom:10px;right:14px;color:var(--huevo);font-size:0.5rem;opacity:0.5;}
+
+.role-tabs{display:flex;gap:6px;margin-bottom:20px;}
+.rtab{flex:1;padding:10px;border:1px solid rgba(107,189,212,0.2);background:transparent;cursor:pointer;font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:1px;color:rgba(168,216,232,0.5);border-radius:2px;transition:all 0.2s;}
+.rtab.active{background:var(--azul-cla);border-color:var(--azul-cla);color:var(--blanco);}
+
+.fl{margin-bottom:14px;}
+.fl label{display:block;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gris-azul);margin-bottom:6px;font-family:'Cinzel',serif;}
+.fl input,.fl select{width:100%;padding:12px 14px;background:rgba(13,43,62,0.6);border:1px solid rgba(107,189,212,0.2);border-radius:2px;font-family:'Lora',serif;font-size:0.9rem;color:var(--blanco);outline:none;transition:border-color 0.2s;}
+.fl input:focus,.fl select:focus{border-color:var(--huevo);}
+.fl select option{background:var(--azul-med);}
+
+.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--azul-cla),var(--huevo));color:var(--blanco);border:none;border-radius:2px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:3px;cursor:pointer;box-shadow:0 6px 20px var(--sombra2);transition:transform 0.15s,box-shadow 0.15s;margin-top:4px;}
+.btn-login:hover{transform:translateY(-1px);box-shadow:0 10px 28px var(--sombra2);}
+.l-err{color:#F08080;font-size:0.75rem;text-align:center;margin-top:10px;display:none;font-style:italic;}
+
+/* ════════════════════
+   NAV
+════════════════════ */
+.top-nav{background:var(--azul-prof);border-bottom:1px solid rgba(107,189,212,0.2);padding:0 18px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-brand{font-family:'Cinzel',serif;color:var(--huevo-bri);font-size:1.1rem;font-weight:900;letter-spacing:4px;display:flex;align-items:center;gap:10px;}
+/* huevo SVG inline pequeño */
+.nav-egg{width:20px;height:24px;background:radial-gradient(ellipse at 35% 30%,var(--huevo-bri),var(--huevo),var(--azul-cla));border-radius:50% 50% 50% 50%/60% 60% 40% 40%;box-shadow:0 0 10px rgba(107,189,212,0.4);}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.nav-user{font-size:0.7rem;color:var(--gris-azul);font-style:italic;}
+.btn-out{background:transparent;border:1px solid rgba(107,189,212,0.2);color:var(--gris-azul);padding:4px 12px;border-radius:2px;cursor:pointer;font-size:0.65rem;font-family:'Cinzel',serif;letter-spacing:1px;transition:all 0.2s;}
+.btn-out:hover{background:rgba(107,189,212,0.1);}
+
+.tab-bar{background:var(--azul-prof);border-bottom:1px solid rgba(107,189,212,0.15);display:flex;overflow-x:auto;padding:0 14px;gap:2px;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{padding:11px 14px;border:none;background:transparent;cursor:pointer;font-family:'Cinzel',serif;font-size:0.68rem;font-weight:600;letter-spacing:1px;color:rgba(176,200,212,0.4);white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s;margin-bottom:-1px;}
+.tab-btn.active{color:var(--huevo);border-bottom-color:var(--huevo);}
+
+/* ════════════════════
+   CLIENT PAGE
+════════════════════ */
+#screen-client{background:var(--azul-prof);}
+
+.client-hero{
+  background:linear-gradient(180deg,#081C2B 0%,var(--azul-prof) 100%);
+  padding:0 0 50px;position:relative;overflow:hidden;
+}
+.hero-band{background:rgba(46,125,170,0.15);border-bottom:1px solid rgba(107,189,212,0.15);padding:8px 20px;display:flex;justify-content:space-between;align-items:center;}
+.hero-band span{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:2px;color:var(--gris-azul);opacity:0.7;}
+
+.hero-body{padding:28px 20px 0;text-align:center;position:relative;z-index:2;}
+
+/* Siluetas gallinas hero — estilo ASOGICH en azules */
+.hen-scene{
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:0;margin-bottom:20px;position:relative;
+}
+.hen-scene::after{
+  content:'';position:absolute;bottom:0;left:10%;right:10%;
+  height:2px;background:linear-gradient(90deg,transparent,rgba(107,189,212,0.3),transparent);
+}
+
+.hero-tag{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:4px;color:var(--huevo);margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.hero-tag::before,.hero-tag::after{content:'';flex:1;max-width:50px;height:1px;background:rgba(107,189,212,0.3);}
+.hero-name{font-family:'Cinzel',serif;font-size:3.2rem;font-weight:900;color:var(--blanco);letter-spacing:12px;text-shadow:0 0 60px rgba(107,189,212,0.3);line-height:1;}
+.hero-mapud{font-style:italic;color:var(--gris-azul);font-size:0.8rem;margin-top:8px;opacity:0.7;}
+.hero-desc{font-size:0.82rem;color:var(--huevo-cla);margin-top:6px;opacity:0.8;}
+.seller-chip{display:inline-flex;align-items:center;gap:6px;margin-top:12px;border:1px solid rgba(107,189,212,0.25);border-radius:2px;padding:5px 14px;color:var(--huevo);font-size:0.68rem;font-family:'Cinzel',serif;letter-spacing:1px;}
+
+/* PROMO */
+.promo-bar{
+  background:linear-gradient(90deg,var(--azul-med),var(--azul-cla),var(--azul-med));
+  border-top:1px solid rgba(107,189,212,0.2);border-bottom:1px solid rgba(107,189,212,0.2);
+  padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:16px;
+  position:relative;overflow:hidden;
+}
+.promo-bar::before{content:'· · · · · · · · · · · · · · ·';position:absolute;top:3px;left:0;right:0;font-size:0.45rem;color:rgba(107,189,212,0.15);text-align:center;letter-spacing:4px;}
+.promo-txt h3{font-family:'Cinzel',serif;color:var(--blanco);font-size:0.85rem;letter-spacing:1px;}
+.promo-txt p{color:var(--huevo-cla);font-size:0.72rem;margin-top:2px;opacity:0.8;}
+.promo-bdg{background:var(--ocre);color:white;font-family:'Cinzel',serif;font-weight:900;font-size:1rem;padding:7px 14px;border-radius:2px;white-space:nowrap;box-shadow:0 3px 12px rgba(196,137,42,0.4);}
+
+/* CARDS */
+.c-wrap{padding:16px 16px 110px;}
+.c-card{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.15);border-radius:2px;padding:22px;margin-bottom:12px;position:relative;}
+.c-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(107,189,212,0.4),transparent);}
+.c-title{font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:2px;color:var(--huevo);margin-bottom:18px;display:flex;align-items:center;gap:10px;text-transform:uppercase;}
+.c-title::after{flex:1;content:'';height:1px;background:rgba(107,189,212,0.15);}
+
+.f-lbl{display:block;font-size:0.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gris-azul);margin-bottom:6px;font-family:'Cinzel',serif;}
+.f-inp,.f-sel{width:100%;padding:12px 14px;background:rgba(13,43,62,0.5);border:1px solid rgba(107,189,212,0.18);border-radius:2px;font-family:'Lora',serif;font-size:0.9rem;color:var(--blanco);outline:none;transition:border-color 0.2s;}
+.f-inp:focus,.f-sel:focus{border-color:var(--huevo);}
+.f-sel option{background:var(--azul-med);}
+.fg{margin-bottom:14px;}
+
+/* QTY */
+.qty-row{display:flex;align-items:center;gap:10px;}
+.qty-btn{width:44px;height:44px;border-radius:2px;border:1px solid rgba(107,189,212,0.25);background:rgba(13,43,62,0.4);font-size:1.3rem;cursor:pointer;color:var(--huevo);display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0;}
+.qty-btn:hover{background:var(--azul-cla);}
+.qty-disp{flex:1;text-align:center;font-family:'Cinzel',serif;font-size:2rem;font-weight:900;color:var(--blanco);}
+.qty-unit{font-family:'Lora',serif;font-size:0.68rem;color:var(--gris-azul);display:block;text-align:center;font-style:italic;}
+
+/* PRICE */
+.price-box{background:rgba(13,43,62,0.5);border:1px solid rgba(107,189,212,0.15);border-radius:2px;padding:16px;}
+.prow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:0.85rem;color:var(--gris-azul);border-bottom:1px solid rgba(107,189,212,0.08);}
+.prow:last-child{border-bottom:none;}
+.prow.tot{padding-top:10px;font-size:1.05rem;font-weight:600;color:var(--blanco);}
+.dtag{background:rgba(46,125,170,0.4);color:var(--huevo-cla);font-size:0.6rem;font-weight:600;padding:2px 8px;border-radius:1px;letter-spacing:1px;margin-left:6px;}
+
+/* PAY */
+.pay-box{background:rgba(13,43,62,0.5);border:1px solid rgba(107,189,212,0.2);border-radius:2px;padding:18px;}
+.pay-title{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:2px;color:var(--huevo);margin-bottom:12px;text-transform:uppercase;}
+.pdet{display:flex;justify-content:space-between;font-size:0.83rem;padding:6px 0;border-bottom:1px solid rgba(107,189,212,0.08);}
+.pdet:last-of-type{border-bottom:none;}
+.pdet span:first-child{color:var(--gris-azul);}
+.pdet span:last-child{color:var(--blanco);font-weight:600;}
+.pay-amount{margin-top:14px;padding:16px;background:rgba(107,189,212,0.1);border:1px solid rgba(107,189,212,0.2);border-radius:2px;text-align:center;font-family:'Cinzel',serif;font-size:1.9rem;font-weight:900;color:var(--huevo);letter-spacing:2px;}
+
+.btn-confirm{width:100%;padding:16px;background:linear-gradient(135deg,var(--azul-med),var(--azul-cla));border:1px solid rgba(107,189,212,0.3);color:var(--blanco);border-radius:2px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:3px;cursor:pointer;box-shadow:0 6px 20px var(--sombra2);transition:transform 0.15s;}
+.btn-confirm:hover{transform:translateY(-2px);}
+
+/* REVIEWS */
+.review-section{padding:0 16px 16px;}
+.rev-title{font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--gris-azul);text-align:center;padding:16px 0 12px;}
+.stars-select{display:flex;justify-content:center;gap:8px;margin-bottom:14px;}
+.star-btn{font-size:1.8rem;cursor:pointer;opacity:0.3;transition:all 0.15s;background:none;border:none;color:var(--ocre-cla);}
+.star-btn.on{opacity:1;transform:scale(1.15);}
+.rev-card{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.12);border-radius:2px;padding:16px;margin-bottom:10px;}
+.rev-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.rev-name{font-size:0.85rem;font-weight:600;color:var(--blanco);}
+.rev-stars{color:var(--ocre-cla);font-size:0.8rem;}
+.rev-date{font-size:0.65rem;color:var(--gris-azul);font-style:italic;}
+.rev-text{font-size:0.82rem;color:var(--huevo-cla);line-height:1.6;opacity:0.85;}
+.no-reviews{text-align:center;padding:24px;color:var(--gris-azul);font-size:0.82rem;font-style:italic;}
+
+/* CURIOSOS */
+.dato-card{background:rgba(13,43,62,0.5);border-left:2px solid var(--huevo);padding:14px;margin-bottom:10px;}
+.dato-card.folk{border-left-color:var(--ocre);}
+.dato-tag{font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;font-family:'Cinzel',serif;display:inline-block;padding:2px 8px;border-radius:1px;margin-bottom:6px;}
+.dato-tag.sci{background:rgba(107,189,212,0.12);color:var(--huevo);}
+.dato-tag.his{background:rgba(196,137,42,0.15);color:var(--ocre-cla);}
+.dato-tag.fol{background:rgba(255,255,255,0.06);color:var(--gris-azul);}
+.dato-text{font-size:0.84rem;color:var(--huevo-cla);line-height:1.6;opacity:0.85;}
+.dato-src{font-size:0.65rem;color:rgba(176,200,212,0.4);margin-top:6px;font-style:italic;}
+
+/* SHARE BAR */
+.share-bar{position:fixed;bottom:0;left:0;right:0;background:var(--azul-prof);border-top:1px solid rgba(107,189,212,0.2);padding:10px 14px;display:flex;gap:8px;box-shadow:0 -4px 20px var(--sombra2);z-index:50;}
+.btn-wa{flex:1;padding:12px;background:#1A6B33;color:white;border:none;border-radius:2px;font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;}
+.btn-ig{flex:1;padding:12px;background:linear-gradient(135deg,#6B2FA0,#C13584,#E1306C);color:white;border:none;border-radius:2px;font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;}
+.btn-cp{width:44px;padding:12px;background:rgba(107,189,212,0.12);border:1px solid rgba(107,189,212,0.2);color:var(--huevo);border-radius:2px;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+
+/* SUCCESS */
+.sov{display:none;position:fixed;inset:0;background:rgba(8,28,43,0.97);z-index:500;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center;}
+.sov::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Cpath d='M25 2 L48 25 L25 48 L2 25 Z' fill='none' stroke='%236BBDD4' stroke-width='0.4' opacity='0.1'/%3E%3C/svg%3E");pointer-events:none;}
+.sov.show{display:flex;}
+.sov-egg{width:80px;height:96px;background:radial-gradient(ellipse at 35% 28%,var(--huevo-bri),var(--huevo),var(--azul-cla));border-radius:50% 50% 50% 50%/60% 60% 40% 40%;margin:0 auto 20px;box-shadow:0 0 50px rgba(107,189,212,0.5);animation:pulse 2s ease-in-out infinite;position:relative;z-index:2;}
+@keyframes pulse{0%,100%{box-shadow:0 0 40px rgba(107,189,212,0.4);}50%{box-shadow:0 0 70px rgba(107,189,212,0.7);}}
+.sov h2{font-family:'Cinzel',serif;color:var(--blanco);font-size:1.6rem;letter-spacing:2px;margin-bottom:8px;position:relative;z-index:2;}
+.sov p{color:var(--gris-azul);font-size:0.85rem;line-height:1.6;position:relative;z-index:2;}
+.sov-code{margin:18px 0;background:rgba(107,189,212,0.08);border:1px solid rgba(107,189,212,0.25);border-radius:2px;padding:14px 24px;color:var(--huevo);font-size:1.5rem;font-weight:800;font-family:'Cinzel',serif;letter-spacing:6px;position:relative;z-index:2;}
+.btn-ok{background:var(--blanco);color:var(--azul-prof);border:none;padding:13px 36px;border-radius:2px;font-weight:700;cursor:pointer;font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:2px;position:relative;z-index:2;}
+
+/* ════════════════════
+   SELLER
+════════════════════ */
+#screen-seller{background:var(--azul-prof);}
+.s-hero{background:linear-gradient(135deg,#081C2B,var(--azul-med));padding:22px 20px;text-align:center;border-bottom:1px solid rgba(107,189,212,0.2);}
+.s-hero h2{font-family:'Cinzel',serif;color:var(--huevo-bri);font-size:1.2rem;letter-spacing:3px;}
+.s-hero p{color:var(--gris-azul);font-size:0.75rem;margin-top:4px;font-style:italic;}
+
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px;}
+.s-stat{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.15);border-radius:2px;padding:16px;text-align:center;position:relative;overflow:hidden;}
+.s-stat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--huevo),transparent);}
+.sv{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;color:var(--blanco);}
+.sl{font-size:0.6rem;color:var(--gris-azul);text-transform:uppercase;letter-spacing:1px;margin-top:3px;}
+
+.meta-c{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.15);border-radius:2px;margin:0 16px 12px;padding:18px;}
+.meta-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.meta-top h4{font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:2px;color:var(--huevo);text-transform:uppercase;}
+.meta-edit{background:transparent;border:1px solid rgba(107,189,212,0.2);color:var(--gris-azul);border-radius:2px;padding:3px 10px;font-size:0.6rem;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;}
+.meta-nums{display:flex;justify-content:space-between;font-size:0.78rem;color:var(--gris-azul);margin-bottom:8px;}
+.meta-nums strong{color:var(--blanco);}
+.pbar{height:6px;background:rgba(13,43,62,0.5);border-radius:1px;overflow:hidden;}
+.pfill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--azul-cla),var(--huevo));transition:width 0.8s ease;}
+.pct{text-align:right;font-size:0.65rem;color:var(--gris-azul);margin-top:4px;font-style:italic;}
+
+.link-card{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.15);border-radius:2px;margin:0 16px 12px;padding:18px;}
+.link-card h3{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:2px;color:var(--huevo);margin-bottom:10px;text-transform:uppercase;}
+.link-box{background:rgba(13,43,62,0.5);border:1px solid rgba(107,189,212,0.15);border-radius:2px;padding:12px 14px;font-size:0.72rem;color:var(--huevo-cla);word-break:break-all;margin-bottom:12px;font-style:italic;line-height:1.5;}
+.sbtns{display:flex;gap:8px;}
+.sbtn{flex:1;padding:11px 4px;border:none;border-radius:2px;font-family:'Cinzel',serif;font-size:0.6rem;font-weight:600;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;}
+.sbtn.wa{background:#1A6B33;color:white;}
+.sbtn.ig{background:linear-gradient(135deg,#6B2FA0,#C13584);color:white;}
+.sbtn.cp{background:rgba(107,189,212,0.1);color:var(--huevo);border:1px solid rgba(107,189,212,0.2);}
+
+.sec-head{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;}
+.sec-head h3{font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:2px;color:var(--gris-azul);text-transform:uppercase;}
+.sale-item{background:rgba(26,74,107,0.3);border:1px solid rgba(107,189,212,0.12);border-radius:2px;margin:0 16px 8px;padding:14px;display:flex;align-items:center;gap:12px;}
+.sale-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--azul-med),var(--azul-cla));display:flex;align-items:center;justify-content:center;color:var(--blanco);font-weight:700;font-family:'Cinzel',serif;font-size:0.9rem;flex-shrink:0;border:1px solid rgba(107,189,212,0.2);}
+.sale-info{flex:1;}
+.sale-name{font-size:0.88rem;font-weight:600;color:var(--blanco);}
+.sale-meta{font-size:0.68rem;color:var(--gris-azul);margin-top:2px;font-style:italic;}
+.sale-right{text-align:right;}
+.sale-tot{font-family:'Cinzel',serif;font-weight:700;color:var(--huevo);font-size:0.9rem;}
+.sale-id{font-size:0.6rem;color:rgba(176,200,212,0.3);}
+.empty-st{text-align:center;padding:36px 20px;color:var(--gris-azul);}
+.empty-st .ei{font-size:2.5rem;margin-bottom:8px;}
+.empty-st p{font-size:0.82rem;font-style:italic;}
+
+/* ════════════════════
+   ADMIN
+════════════════════ */
+#screen-admin{background:var(--azul-prof);}
+.a-hero{background:linear-gradient(135deg,#081C2B,var(--azul-med));padding:20px;text-align:center;border-bottom:1px solid rgba(107,189,212,0.2);}
+.a-hero h2{font-family:'Cinzel',serif;color:var(--huevo-bri);font-size:1.1rem;letter-spacing:3px;}
+.a-hero p{color:var(--gris-azul);font-size:0.7rem;margin-top:4px;font-style:italic;}
+
+.a-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 16px;}
+.a-stat{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.15);border-radius:2px;padding:14px;text-align:center;}
+.a-stat.full{grid-column:1/-1;}
+.a-stat .av{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:900;color:var(--blanco);}
+.a-stat .al{font-size:0.58rem;color:var(--gris-azul);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+.breakdown{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.15);border-radius:2px;margin:0 16px 12px;padding:18px;}
+.breakdown h4{font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:2px;color:var(--huevo);margin-bottom:14px;text-transform:uppercase;}
+.brow{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(107,189,212,0.08);}
+.brow:last-child{border-bottom:none;}
+.bav{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--azul-med),var(--azul-cla));display:flex;align-items:center;justify-content:center;color:var(--blanco);font-weight:700;font-size:0.82rem;font-family:'Cinzel',serif;flex-shrink:0;}
+.bnm{flex:1;}
+.bnm span{font-size:0.85rem;color:var(--blanco);}
+.bnm small{font-size:0.65rem;color:var(--gris-azul);font-style:italic;}
+.btot{font-family:'Cinzel',serif;color:var(--huevo);font-size:0.9rem;font-weight:700;}
+
+.chart-card{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.15);border-radius:2px;margin:0 16px 12px;padding:18px;}
+.chart-card h4{font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:2px;color:var(--huevo);margin-bottom:14px;text-transform:uppercase;}
+.barchart{display:flex;align-items:flex-end;gap:3px;height:80px;}
+.bc{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.b{width:100%;background:rgba(107,189,212,0.15);border-radius:1px 1px 0 0;min-height:3px;}
+.b.on{background:linear-gradient(180deg,var(--huevo-bri),var(--huevo),var(--azul-cla));}
+.bl{font-size:0.48rem;color:rgba(176,200,212,0.35);}
+
+/* reviews admin */
+.rev-admin{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.15);border-radius:2px;margin:0 16px 12px;padding:18px;}
+.rev-admin h4{font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:2px;color:var(--huevo);margin-bottom:14px;text-transform:uppercase;}
+.rev-avg{text-align:center;padding:12px;margin-bottom:12px;}
+.rev-avg .big-stars{font-size:1.8rem;color:var(--ocre-cla);}
+.rev-avg p{font-size:0.72rem;color:var(--gris-azul);margin-top:4px;font-style:italic;}
+
+.cfg-card{background:rgba(26,74,107,0.35);border:1px solid rgba(107,189,212,0.15);border-radius:2px;margin:0 16px 12px;padding:18px;}
+.cfg-card h4{font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:2px;color:var(--huevo);margin-bottom:14px;text-transform:uppercase;}
+.cfg-note{background:rgba(13,43,62,0.5);border-left:2px solid rgba(107,189,212,0.3);padding:10px;font-size:0.75rem;color:var(--gris-azul);margin-top:10px;line-height:1.5;font-style:italic;}
+.btn-save{width:100%;padding:13px;margin-top:12px;background:linear-gradient(135deg,var(--azul-med),var(--azul-cla));border:1px solid rgba(107,189,212,0.2);color:var(--blanco);border-radius:2px;font-family:'Cinzel',serif;font-size:0.75rem;font-weight:600;letter-spacing:2px;cursor:pointer;}
+.btn-exp{width:100%;padding:13px;margin-top:8px;background:rgba(107,189,212,0.08);border:1px solid rgba(107,189,212,0.2);color:var(--huevo);border-radius:2px;font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:2px;cursor:pointer;}
+
+.user-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(107,189,212,0.08);}
+.user-row:last-child{border-bottom:none;}
+.user-info span{font-size:0.85rem;color:var(--blanco);}
+.user-info small{font-size:0.65rem;color:var(--gris-azul);font-style:italic;}
+.rpill{padding:2px 10px;border-radius:1px;font-size:0.58rem;letter-spacing:1px;font-family:'Cinzel',serif;}
+.rpill.admin{background:rgba(107,189,212,0.15);color:var(--huevo);}
+.rpill.vendedor{background:rgba(46,125,170,0.15);color:var(--huevo-cla);}
+.btn-del{background:none;border:1px solid rgba(200,100,100,0.3);border-radius:2px;padding:3px 10px;font-size:0.6rem;cursor:pointer;color:#F08080;}
+.btn-add{width:100%;padding:11px;background:transparent;border:1px dashed rgba(107,189,212,0.2);border-radius:2px;font-size:0.72rem;color:var(--gris-azul);cursor:pointer;margin-top:12px;font-family:'Cinzel',serif;letter-spacing:1px;}
+
+/* MODALS */
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:400;align-items:flex-end;justify-content:center;}
+.modal-ov.show{display:flex;}
+.modal-box{background:var(--azul-med);border:1px solid rgba(107,189,212,0.3);border-radius:3px 3px 0 0;border-top:2px solid var(--huevo);padding:26px 22px;width:100%;max-width:480px;}
+.modal-box h3{font-family:'Cinzel',serif;font-size:0.9rem;color:var(--blanco);margin-bottom:16px;letter-spacing:1px;}
+.mrow{display:flex;gap:10px;margin-top:14px;}
+.btn-mc{flex:1;padding:12px;background:rgba(13,43,62,0.5);border:1px solid rgba(107,189,212,0.15);border-radius:2px;color:var(--gris-azul);cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;font-size:0.7rem;}
+.btn-ms{flex:1;padding:12px;background:var(--azul-cla);border:none;border-radius:2px;color:var(--blanco);font-family:'Cinzel',serif;letter-spacing:1px;font-size:0.7rem;font-weight:600;cursor:pointer;}
+
+/* TOAST */
+.toast{position:fixed;bottom:75px;left:50%;transform:translateX(-50%) translateY(14px);background:var(--azul-prof);border:1px solid rgba(107,189,212,0.25);color:var(--huevo);padding:10px 20px;border-radius:2px;font-size:0.72rem;font-family:'Cinzel',serif;letter-spacing:1px;opacity:0;transition:all 0.3s;z-index:600;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@media(min-width:480px){
+  .c-wrap,.review-section,.stat-grid,.a-stat-grid{max-width:480px;margin-left:auto;margin-right:auto;}
+  .promo-bar,.meta-c,.link-card,.breakdown,.chart-card,.cfg-card,.sec-head,.sale-item,.rev-admin,.rev-card{max-width:480px;margin-left:auto;margin-right:auto;}
+  .share-bar{max-width:480px;left:50%;transform:translateX(-50%);}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ LOGIN ══════════ -->
+<div id="screen-login" class="screen active">
+  <!-- Siluetas decorativas -->
+  <div class="login-hens">
+    <!-- Kollonka (sin cola) -->
+    <svg width="55" height="60" viewBox="0 0 55 60" fill="#6BBDD4" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="38" rx="20" ry="14"/>
+      <ellipse cx="14" cy="24" rx="11" ry="9"/>
+      <polygon points="6,21 1,18 7,20"/>
+      <polygon points="16,16 14,8 17,15 19,7 20,15 22,10 21,16"/>
+      <ellipse cx="48" cy="36" rx="4" ry="5"/>
+      <line x1="22" y1="50" x2="20" y2="60" stroke="#6BBDD4" stroke-width="2"/>
+      <line x1="32" y1="51" x2="30" y2="60" stroke="#6BBDD4" stroke-width="2"/>
+    </svg>
+    <!-- Huevo azul -->
+    <svg width="36" height="44" viewBox="0 0 36 44" xmlns="http://www.w3.org/2000/svg">
+      <defs><radialGradient id="eg" cx="35%" cy="28%"><stop offset="0%" stop-color="#C8EBF5"/><stop offset="50%" stop-color="#6BBDD4"/><stop offset="100%" stop-color="#1A4A6B"/></radialGradient></defs>
+      <ellipse cx="18" cy="22" rx="16" ry="20" fill="url(#eg)" opacity="0.9"/>
+    </svg>
+    <!-- Ketro (con aretes y cola) -->
+    <svg width="70" height="65" viewBox="0 0 70 65" fill="#A8D8E8" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="35" cy="40" rx="20" ry="14"/>
+      <ellipse cx="18" cy="26" rx="11" ry="9"/>
+      <polygon points="10,23 4,20 10,22"/>
+      <polygon points="19,17 17,9 20,16 22,8 23,16 25,11 24,17"/>
+      <ellipse cx="8" cy="28" rx="5" ry="3" transform="rotate(-20,8,28)" opacity="0.8"/>
+      <ellipse cx="7" cy="32" rx="4" ry="2" transform="rotate(-25,7,32)" opacity="0.6"/>
+      <path d="M53,36 Q63,20 68,14" stroke="#A8D8E8" stroke-width="2.5" fill="none"/>
+      <path d="M53,38 Q64,25 68,20" stroke="#A8D8E8" stroke-width="2" fill="none"/>
+      <path d="M53,40 Q62,30 66,27" stroke="#A8D8E8" stroke-width="1.5" fill="none"/>
+      <line x1="25" y1="52" x2="23" y2="62" stroke="#A8D8E8" stroke-width="2"/>
+      <line x1="35" y1="53" x2="33" y2="62" stroke="#A8D8E8" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="login-title">ELKAN</div>
+  <div class="login-sub">Huevos Azules Mapuche · Chile</div>
+  <div class="login-divider"></div>
+
+  <div class="login-card">
+    <div class="role-tabs">
+      <button class="rtab active" onclick="setRole('vendedor',this)">Vendedor</button>
+      <button class="rtab" onclick="setRole('admin',this)">Administrador</button>
+    </div>
+    <div class="fl" id="fl-sel">
+      <label>¿Quién eres?</label>
+      <select id="l-sel" class="f-sel" style="width:100%;padding:12px 14px;background:rgba(13,43,62,0.6);border:1px solid rgba(107,189,212,0.2);border-radius:2px;font-family:'Lora',serif;font-size:0.9rem;color:white;outline:none;"></select>
+    </div>
+    <div class="fl" id="fl-usr" style="display:none">
+      <label>Usuario</label>
+      <input type="text" id="l-usr" class="f-inp" placeholder="cristobal">
+    </div>
+    <div class="fl">
+      <label>Contraseña</label>
+      <input type="password" id="l-pass" class="f-inp" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn-login" onclick="doLogin()">ENTRAR</button>
+    <div class="l-err" id="l-err">Contraseña incorrecta</div>
+  </div>
+</div>
+
+<!-- ══════════ CLIENT ══════════ -->
+<div id="screen-client" class="screen">
+  <div class="client-hero">
+    <div class="hero-band">
+      <span>◆ CRIANZA ANCESTRAL MAPUCHE</span>
+      <span>CHILE ◆</span>
+    </div>
+    <div class="hero-body">
+      <!-- Escena gallinas -->
+      <div class="hen-scene">
+        <svg width="60" height="58" viewBox="0 0 60 58" fill="#6BBDD4" opacity="0.7" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="33" cy="38" rx="20" ry="13"/>
+          <ellipse cx="16" cy="24" rx="11" ry="9"/>
+          <polygon points="8,21 2,18 8,20"/>
+          <polygon points="17,15 15,7 18,14 20,6 21,14 23,9 22,15"/>
+          <ellipse cx="51" cy="36" rx="4" ry="5"/>
+          <line x1="24" y1="49" x2="22" y2="58" stroke="#6BBDD4" stroke-width="2"/>
+          <line x1="34" y1="50" x2="32" y2="58" stroke="#6BBDD4" stroke-width="2"/>
+        </svg>
+        <svg width="44" height="54" viewBox="0 0 44 54" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="he2" cx="35%" cy="28%"><stop offset="0%" stop-color="#C8EBF5"/><stop offset="50%" stop-color="#6BBDD4"/><stop offset="100%" stop-color="#1A4A6B"/></radialGradient></defs>
+          <ellipse cx="22" cy="27" rx="20" ry="25" fill="url(#he2)" opacity="0.85"/>
+        </svg>
+        <svg width="72" height="62" viewBox="0 0 72 62" fill="#A8D8E8" opacity="0.7" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="36" cy="40" rx="20" ry="13"/>
+          <ellipse cx="19" cy="26" rx="11" ry="9"/>
+          <polygon points="11,23 5,20 11,22"/>
+          <polygon points="20,17 18,9 21,16 23,8 24,16 26,11 25,17"/>
+          <ellipse cx="9" cy="28" rx="5" ry="3" transform="rotate(-20,9,28)" opacity="0.8"/>
+          <ellipse cx="8" cy="32" rx="4" ry="2" transform="rotate(-25,8,32)" opacity="0.6"/>
+          <path d="M54,36 Q64,20 69,14" stroke="#A8D8E8" stroke-width="2.5" fill="none"/>
+          <path d="M54,38 Q65,25 69,20" stroke="#A8D8E8" stroke-width="2" fill="none"/>
+          <line x1="26" y1="51" x2="24" y2="61" stroke="#A8D8E8" stroke-width="2"/>
+          <line x1="36" y1="52" x2="34" y2="61" stroke="#A8D8E8" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="hero-tag">Kollonka · Ketro · Huevo Azul</div>
+      <div class="hero-name">ELKAN</div>
+      <div class="hero-mapud">"Lo guardado, lo oculto" — Mapudungún</div>
+      <div class="hero-desc">Huevos azules de gallina mapuche · Crianza ancestral</div>
+      <div class="seller-chip" id="seller-chip" style="display:none">◆ <span id="chip-name">Vendedor</span></div>
+    </div>
+  </div>
+
+  <div class="promo-bar">
+    <div class="promo-txt"><h3>◆ PROMO DEL MES</h3><p>2 docenas: la segunda con descuento</p></div>
+    <div class="promo-bdg">−20%</div>
+  </div>
+
+  <div class="c-wrap">
+    <div class="c-card">
+      <div class="c-title">Tu pedido</div>
+      <div class="fg"><label class="f-lbl">Nombre completo</label><input type="text" id="c-nom" class="f-inp" placeholder="Ej: María González"></div>
+      <div class="fg"><label class="f-lbl">Teléfono (opcional)</label><input type="tel" id="c-tel" class="f-inp" placeholder="+56 9 0000 0000"></div>
+      <div class="fg"><label class="f-lbl">Presentación</label>
+        <select id="c-tipo" class="f-sel" onchange="calcular()">
+          <option value="docena">Docena (12 huevos)</option>
+          <option value="media">Media docena (6 huevos)</option>
+        </select>
+      </div>
+      <div class="fg"><label class="f-lbl">Cantidad</label>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="chgQty(-1)">−</button>
+          <div><div class="qty-disp" id="qty-n">1</div><span class="qty-unit" id="qty-u">docena</span></div>
+          <button class="qty-btn" onclick="chgQty(1)">+</button>
+        </div>
+      </div>
+      <div class="price-box">
+        <div class="prow"><span>Precio unitario</span><span id="p-u">$0</span></div>
+        <div class="prow"><span>Subtotal</span><span id="p-s">$0</span></div>
+        <div class="prow" id="p-dr" style="display:none"><span>Descuento<span class="dtag">−20%</span></span><span id="p-d" style="color:var(--huevo-cla)">−$0</span></div>
+        <div class="prow tot"><span>Total</span><span id="p-t">$0</span></div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-title">Cómo pagar</div>
+      <div class="pay-box">
+        <div class="pay-title">◆ Transferencia / Cuenta RUT</div>
+        <div class="pdet"><span>Banco</span><span id="pay-banco">—</span></div>
+        <div class="pdet"><span>Titular</span><span id="pay-titular">—</span></div>
+        <div class="pdet"><span>Número / RUT</span><span id="pay-cuenta">—</span></div>
+        <div class="pdet"><span>Referencia</span><span id="pay-ref">Tu nombre</span></div>
+        <div class="pay-amount" id="pay-big">$0</div>
+      </div>
+      <p style="font-size:0.7rem;color:var(--gris-azul);margin-top:10px;text-align:center;font-style:italic;line-height:1.5;">
+        Envía el comprobante al WhatsApp de tu vendedor para confirmar
+      </p>
+    </div>
+
+    <div class="c-card">
+      <button class="btn-confirm" onclick="confirmar()">CONFIRMAR PEDIDO</button>
+      <p style="text-align:center;font-size:0.65rem;color:var(--gris-azul);margin-top:8px;font-style:italic;">Tu pedido quedará registrado en el sistema</p>
+    </div>
+  </div>
+
+  <!-- EVALUACIONES -->
+  <div class="review-section">
+    <div class="rev-title">◆ Evaluaciones de clientes ◆</div>
+
+    <!-- Formulario evaluación -->
+    <div class="c-card" style="margin:0 0 12px;">
+      <div class="c-title">Deja tu evaluación</div>
+      <div class="fg"><label class="f-lbl">Tu nombre</label><input type="text" id="rev-nom" class="f-inp" placeholder="Ej: María González"></div>
+      <div style="margin-bottom:14px;">
+        <label class="f-lbl">Calificación</label>
+        <div class="stars-select" id="stars-sel">
+          <button class="star-btn" data-v="1" onclick="setStar(1)">★</button>
+          <button class="star-btn" data-v="2" onclick="setStar(2)">★</button>
+          <button class="star-btn" data-v="3" onclick="setStar(3)">★</button>
+          <button class="star-btn" data-v="4" onclick="setStar(4)">★</button>
+          <button class="star-btn" data-v="5" onclick="setStar(5)">★</button>
+        </div>
+      </div>
+      <div class="fg"><label class="f-lbl">Tu experiencia</label><textarea id="rev-txt" class="f-inp" rows="3" placeholder="Cuéntanos cómo fue tu experiencia…" style="resize:none;line-height:1.5;"></textarea></div>
+      <button class="btn-confirm" style="padding:13px;" onclick="enviarReview()">ENVIAR EVALUACIÓN</button>
+    </div>
+
+    <!-- Lista reviews -->
+    <div id="reviews-lista"></div>
+  </div>
+
+  <!-- DATOS CURIOSOS -->
+  <div style="padding:0 16px 16px;">
+    <div class="rev-title">◆ La Gallina Mapuche ◆</div>
+    <div class="dato-card"><div class="dato-tag sci">Ciencia</div><div class="dato-text">Solo existen <strong style="color:var(--huevo)">dos razas en el mundo</strong> que ponen huevos azules de forma natural: la Gallina Mapuche de Chile y la Dongxiang de China. Llegaron al mismo huevo azul por caminos genéticos completamente independientes.</div><div class="dato-src">UC Chile / PLOS ONE, 2013</div></div>
+    <div class="dato-card"><div class="dato-tag sci">Ciencia</div><div class="dato-text">El azul no es pintura: un <strong style="color:var(--huevo)">retrovirus antiguo e inofensivo</strong> activó un gen que convierte hemoglobina en biliverdina, pigmento que tiñe la cáscara desde adentro. Ocurrió hace entre 200 y 500 años.</div><div class="dato-src">Universidad de Nottingham / PLOS ONE, 2013</div></div>
+    <div class="dato-card"><div class="dato-tag his">Historia</div><div class="dato-text">Existen dos variedades: la <strong style="color:var(--huevo-cla)">Kollonka</strong> (sin cola, su nombre en mapudungún significa "sin cola") y la <strong style="color:var(--huevo-cla)">Ketro</strong> (con aretes de plumas en las orejas y cola). Ambas ponen huevos azules.</div><div class="dato-src">ASOGICH · Wikipedia</div></div>
+    <div class="dato-card"><div class="dato-tag sci">Ciencia</div><div class="dato-text">Mientras <strong style="color:var(--huevo)">menos pone, más azul</strong> es el huevo. El pigmento biliverdina se acumula más en cada cáscara cuando la gallina pone con menor frecuencia. Los huevos más intensamente azules son los más escasos.</div><div class="dato-src">Granja Santa Isabel · ASOGICH</div></div>
+    <div class="dato-card folk"><div class="dato-tag fol">✦ Tradición oral campesina</div><div class="dato-text">En zonas rurales del sur de Chile se cuenta que cuando un <strong style="color:var(--huevo-cla)">gallo Kollonka muere repentinamente</strong> sin razón aparente, hizo un acto de sacrificio por su dueño, recibiendo en su cuerpo un maleficio que alguien intentó enviar. Creencia no verificada académicamente, pero arraigada en la espiritualidad mapuche donde estas aves protegen el hogar.</div><div class="dato-src">⚠ Tradición oral · Sin respaldo documental</div></div>
+  </div>
+
+  <div class="share-bar">
+    <button class="btn-wa" onclick="shareWA()"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WHATSAPP</button>
+    <button class="btn-ig" onclick="shareIG()"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> INSTAGRAM</button>
+    <button class="btn-cp" onclick="copyLink()">🔗</button>
+  </div>
+</div>
+
+<!-- ══════════ SELLER ══════════ -->
+<div id="screen-seller" class="screen">
+  <div class="top-nav">
+    <div class="nav-brand"><div class="nav-egg"></div>ELKAN</div>
+    <div class="nav-right"><span class="nav-user" id="sel-nav"></span><button class="btn-out" onclick="logout()">SALIR</button></div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="sTab('res',this)">RESUMEN</button>
+    <button class="tab-btn" onclick="sTab('lnk',this)">MI ENLACE</button>
+    <button class="tab-btn" onclick="sTab('vnt',this)">MIS VENTAS</button>
+  </div>
+  <div id="st-res">
+    <div class="s-hero"><h2 id="sel-welcome">Bienvenido</h2><p id="sel-date">—</p></div>
+    <div class="stat-grid">
+      <div class="s-stat"><div class="sv" id="ss-p">0</div><div class="sl">Pedidos hoy</div></div>
+      <div class="s-stat"><div class="sv" id="ss-i">$0</div><div class="sl">Ingresos hoy</div></div>
+      <div class="s-stat"><div class="sv" id="ss-m">$0</div><div class="sl">Ventas del mes</div></div>
+      <div class="s-stat"><div class="sv" id="ss-h">0</div><div class="sl">Huevos vendidos</div></div>
+    </div>
+    <div class="meta-c">
+      <div class="meta-top"><h4>◆ META MENSUAL</h4></div>
+      <div class="meta-nums"><span>Vendido: <strong id="sm-a">$0</strong></span><span>Meta: <strong id="sm-t">$0</strong></span></div>
+      <div class="pbar"><div class="pfill" id="sm-b" style="width:0%"></div></div>
+      <div class="pct" id="sm-p">0%</div>
+    </div>
+  </div>
+  <div id="st-lnk" style="display:none;padding-top:14px;">
+    <div class="link-card">
+      <h3>◆ TU ENLACE PERSONAL</h3>
+      <p style="font-size:0.75rem;color:var(--gris-azul);margin-bottom:12px;font-style:italic;line-height:1.5;">Comparte este enlace con tus clientes. Cada pedido quedará registrado a tu nombre.</p>
+      <div class="link-box" id="my-link">—</div>
+      <div class="sbtns">
+        <button class="sbtn wa" onclick="sWA()">WA</button>
+        <button class="sbtn ig" onclick="sIG()">IG</button>
+        <button class="sbtn cp" onclick="cpLink()">COPIAR</button>
+      </div>
+    </div>
+    <div class="link-card">
+      <h3>◆ MENSAJE LISTO</h3>
+      <div class="link-box" id="msg-tmpl" style="white-space:pre-wrap;line-height:1.6;font-size:0.75rem;"></div>
+      <div class="sbtns" style="margin-top:10px;"><button class="sbtn cp" style="flex:1;" onclick="cpMsg()">COPIAR MENSAJE</button></div>
+    </div>
+  </div>
+  <div id="st-vnt" style="display:none;padding-top:10px;">
+    <div class="sec-head"><h3>MIS VENTAS</h3></div>
+    <div id="sel-sales"></div>
+  </div>
+</div>
+
+<!-- ══════════ ADMIN ══════════ -->
+<div id="screen-admin" class="screen">
+  <div class="top-nav">
+    <div class="nav-brand"><div class="nav-egg"></div>ELKAN ADMIN</div>
+    <div class="nav-right"><span class="nav-user">Cristóbal</span><button class="btn-out" onclick="logout()">SALIR</button></div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="aTab('dsh',this)">DASHBOARD</button>
+    <button class="tab-btn" onclick="aTab('vnt',this)">VENTAS</button>
+    <button class="tab-btn" onclick="aTab('rev',this)">RESEÑAS</button>
+    <button class="tab-btn" onclick="aTab('eqp',this)">EQUIPO</button>
+    <button class="tab-btn" onclick="aTab('cfg',this)">CONFIG</button>
+  </div>
+
+  <div id="at-dsh">
+    <div class="a-hero"><h2>TRAZABILIDAD ELKAN</h2><p id="a-fecha">—</p></div>
+    <div class="a-stat-grid">
+      <div class="a-stat"><div class="av" id="a-ph">0</div><div class="al">Pedidos hoy</div></div>
+      <div class="a-stat"><div class="av" id="a-ih">$0</div><div class="al">Ingresos hoy</div></div>
+      <div class="a-stat"><div class="av" id="a-hm">0</div><div class="al">Huevos este mes</div></div>
+      <div class="a-stat"><div class="av" id="a-cm">0</div><div class="al">Clientes únicos</div></div>
+      <div class="a-stat full"><div class="av" id="a-im">$0</div><div class="al">Ingresos totales del mes</div></div>
+      <div class="a-stat full"><div class="av" id="a-md" style="font-size:0.95rem;">—</div><div class="al">Día con mayor demanda</div></div>
+    </div>
+    <div class="meta-c">
+      <div class="meta-top"><h4>◆ META SEMANAL</h4><button class="meta-edit" onclick="openMeta('s')">EDITAR</button></div>
+      <div class="meta-nums"><span>Vendido: <strong id="ms-a">$0</strong></span><span>Meta: <strong id="ms-t">$0</strong></span></div>
+      <div class="pbar"><div class="pfill" id="ms-b" style="width:0%"></div></div>
+      <div class="pct" id="ms-p">0%</div>
+    </div>
+    <div class="meta-c">
+      <div class="meta-top"><h4>◆ META MENSUAL</h4><button class="meta-edit" onclick="openMeta('m')">EDITAR</button></div>
+      <div class="meta-nums"><span>Vendido: <strong id="mm-a">$0</strong></span><span>Meta: <strong id="mm-t">$0</strong></span></div>
+      <div class="pbar"><div class="pfill" id="mm-b" style="width:0%"></div></div>
+      <div class="pct" id="mm-p">0%</div>
+    </div>
+    <div class="chart-card"><h4>◆ DEMANDA POR DÍA</h4><div class="barchart" id="a-chart"></div><div style="font-size:0.52rem;color:rgba(176,200,212,0.3);margin-top:6px;text-align:center;letter-spacing:1px;">DÍAS DEL MES</div></div>
+    <div class="breakdown"><h4>◆ VENTAS POR VENDEDOR</h4><div id="sel-brkd"></div></div>
+  </div>
+
+  <div id="at-vnt" style="display:none;padding-top:10px;">
+    <div class="sec-head"><h3>TODAS LAS VENTAS</h3><button style="background:none;border:1px solid rgba(200,100,100,0.3);border-radius:2px;padding:3px 10px;font-size:0.6rem;cursor:pointer;color:#F08080;font-family:'Cinzel',serif;letter-spacing:1px;" onclick="limpiar()">LIMPIAR</button></div>
+    <div id="all-sales"></div>
+  </div>
+
+  <div id="at-rev" style="display:none;padding-top:10px;">
+    <div class="rev-admin">
+      <h4>◆ RESUMEN DE EVALUACIONES</h4>
+      <div class="rev-avg"><div class="big-stars" id="avg-stars">—</div><p id="avg-txt">Sin evaluaciones aún</p></div>
+    </div>
+    <div class="sec-head"><h3>TODAS LAS RESEÑAS</h3></div>
+    <div id="admin-reviews" style="padding:0 16px 20px;"></div>
+  </div>
+
+  <div id="at-eqp" style="display:none;padding:14px 0 24px;">
+    <div class="cfg-card"><h4>◆ EQUIPO DE VENDEDORES</h4><div id="users-list"></div><button class="btn-add" onclick="openAddUser()">+ AGREGAR VENDEDOR</button><div class="cfg-note">Los vendedores solo ven sus propias ventas y su enlace personal. Solo tú como administrador tienes acceso al dashboard completo.</div></div>
+  </div>
+
+  <div id="at-cfg" style="display:none;padding:14px 0 30px;">
+    <div class="cfg-card">
+      <h4>◆ DATOS BANCARIOS</h4>
+      <div class="fg"><label class="f-lbl">Banco</label><input type="text" id="cfg-banco" class="f-inp" placeholder="BancoEstado, Cuenta RUT…"></div>
+      <div class="fg"><label class="f-lbl">Titular</label><input type="text" id="cfg-tit" class="f-inp" placeholder="Nombre completo"></div>
+      <div class="fg"><label class="f-lbl">Número / RUT</label><input type="text" id="cfg-cta" class="f-inp" placeholder="12.345.678-9"></div>
+      <button class="btn-save" onclick="saveBank()">GUARDAR DATOS BANCARIOS</button>
+    </div>
+    <div class="cfg-card">
+      <h4>◆ PRECIOS</h4>
+      <div class="fg"><label class="f-lbl">Docena — 12 huevos ($)</label><input type="number" id="cfg-p12" class="f-inp" placeholder="4000"></div>
+      <div class="fg"><label class="f-lbl">Media docena — 6 huevos ($)</label><input type="number" id="cfg-p6" class="f-inp" placeholder="2000"></div>
+      <button class="btn-save" onclick="savePrices()">GUARDAR PRECIOS</button>
+    </div>
+    <div class="cfg-card">
+      <h4>◆ CAMBIAR CONTRASEÑA</h4>
+      <div class="fg"><label class="f-lbl">Nueva contraseña admin</label><input type="password" id="cfg-pass" class="f-inp" placeholder="Nueva contraseña"></div>
+      <button class="btn-save" onclick="changePass()">ACTUALIZAR CONTRASEÑA</button>
+    </div>
+    <div class="cfg-card" style="margin-bottom:0">
+      <h4>◆ EXPORTAR DATOS</h4>
+      <p style="font-size:0.78rem;color:var(--gris-azul);font-style:italic;line-height:1.5;margin-bottom:4px;">Descarga ventas y reseñas en CSV para Excel.</p>
+      <button class="btn-exp" onclick="exportCSV()">DESCARGAR REPORTE CSV</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="sov" id="sov">
+  <div class="sov-egg"></div>
+  <h2>¡PEDIDO REGISTRADO!</h2>
+  <p>Guarda tu código y envía el comprobante<br>al WhatsApp de tu vendedor.</p>
+  <div class="sov-code" id="s-code">—</div>
+  <p id="s-res" style="font-size:0.78rem;color:var(--gris-azul);margin-top:4px;font-style:italic;position:relative;z-index:2;"></p>
+  <button class="btn-ok" onclick="closeSov()">ACEPTAR</button>
+</div>
+
+<!-- META MODAL -->
+<div class="modal-ov" id="mod-meta">
+  <div class="modal-box">
+    <h3 id="mod-meta-t">EDITAR META</h3>
+    <div class="fl"><label>Valor en pesos chilenos ($)</label><input type="number" id="mod-meta-v" class="f-inp" placeholder="100000"></div>
+    <div class="mrow"><button class="btn-mc" onclick="closeModal('mod-meta')">CANCELAR</button><button class="btn-ms" onclick="saveMeta()">GUARDAR</button></div>
+  </div>
+</div>
+
+<!-- ADD USER MODAL -->
+<div class="modal-ov" id="mod-user">
+  <div class="modal-box">
+    <h3>AGREGAR VENDEDOR</h3>
+    <div class="fl"><label>Nombre</label><input type="text" id="nu-n" class="f-inp" placeholder="Nombre del vendedor"></div>
+    <div class="fl"><label>Contraseña</label><input type="password" id="nu-p" class="f-inp" placeholder="Contraseña"></div>
+    <div class="mrow"><button class="btn-mc" onclick="closeModal('mod-user')">CANCELAR</button><button class="btn-ms" onclick="addUser()">AGREGAR</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════
+// STATE
+// ══════════════════════════════
+const DEF={
+  ventas:[],reviews:[],
+  config:{banco:'',titular:'',cuenta:'',precios:{docena:4000,media:2000},metaSemanal:50000,metaMensual:200000},
+  users:[
+    {id:'admin',name:'Cristóbal',role:'admin',pass:'cristobal123'},
+    {id:'u1',name:'Romina',role:'vendedor',pass:'romina123'},
+    {id:'u2',name:'Diego',role:'vendedor',pass:'diego123'},
+    {id:'u3',name:'Benjamín',role:'vendedor',pass:'benjamin123'},
+    {id:'u4',name:'Rayén',role:'vendedor',pass:'rayen123'}
+  ]
+};
+let S=loadS(),CU=null,loginRole='vendedor',metaEd='',qty=1,selStar=0;
+
+function loadS(){
+  try{const s=localStorage.getItem('elkan_v1');if(s){const p=JSON.parse(s);return{...DEF,...p,config:{...DEF.config,...p.config,precios:{...DEF.config.precios,...(p.config?.precios||{})}},users:p.users||DEF.users,reviews:p.reviews||[]};}}catch(e){}
+  return JSON.parse(JSON.stringify(DEF));
+}
+function saveS(){localStorage.setItem('elkan_v1',JSON.stringify(S));}
+
+// HELPERS
+const fmtCLP=n=>'$'+Math.round(n).toLocaleString('es-CL');
+const fmtShort=n=>n>=1000000?'$'+Math.round(n/1000000)+'M':n>=1000?'$'+Math.round(n/1000)+'k':'$'+Math.round(n);
+const getWk=d=>{const s=new Date(d.getFullYear(),0,1);return Math.ceil(((d-s)/86400000+s.getDay()+1)/7);};
+const showScr=id=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');};
+const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);};
+const openModal=id=>document.getElementById(id).classList.add('show');
+const closeModal=id=>document.getElementById(id).classList.remove('show');
+const closeSov=()=>document.getElementById('sov').classList.remove('show');
+function getLink(){const b=window.location.href.split('?')[0];return CU?b+'?seller='+encodeURIComponent(CU.id):b;}
+
+// ── LOGIN ──
+function setRole(r,el){
+  loginRole=r;
+  document.querySelectorAll('.rtab').forEach(b=>b.classList.remove('active'));el.classList.add('active');
+  document.getElementById('fl-sel').style.display=r==='vendedor'?'block':'none';
+  document.getElementById('fl-usr').style.display=r==='admin'?'block':'none';
+}
+function fillSel(){
+  const s=document.getElementById('l-sel');
+  s.innerHTML='<option value="">Selecciona tu nombre…</option>';
+  S.users.filter(u=>u.role==='vendedor').forEach(u=>{s.innerHTML+=`<option value="${u.id}">${u.name}</option>`;});
+}
+function doLogin(){
+  const pass=document.getElementById('l-pass').value.trim();
+  const err=document.getElementById('l-err');err.style.display='none';
+  if(!pass){err.textContent='Ingresa tu contraseña';err.style.display='block';return;}
+  if(loginRole==='admin'){
+    const adm=S.users.find(u=>u.role==='admin');
+    if(adm&&adm.pass===pass){CU=adm;showScr('screen-admin');initAdmin();return;}
+    // fallback
+    if(pass==='cristobal123'){CU=DEF.users[0];showScr('screen-admin');initAdmin();return;}
+  }else{
+    const id=document.getElementById('l-sel').value;
+    if(!id){err.textContent='Selecciona tu nombre';err.style.display='block';return;}
+    const u=S.users.find(u=>u.id===id);
+    if(u&&u.pass===pass){CU=u;showScr('screen-seller');initSeller();return;}
+  }
+  err.textContent='Contraseña incorrecta';err.style.display='block';
+}
+function logout(){CU=null;document.getElementById('l-pass').value='';showScr('screen-login');fillSel();}
+
+// ── CLIENT ──
+function initClient(){
+  calcular();
+  document.getElementById('pay-banco').textContent=S.config.banco||'—';
+  document.getElementById('pay-titular').textContent=S.config.titular||'—';
+  document.getElementById('pay-cuenta').textContent=S.config.cuenta||'—';
+  const p=new URLSearchParams(window.location.search),sid=p.get('seller');
+  if(sid){const u=S.users.find(u=>u.id===sid);if(u){window._sid=sid;window._snm=u.name;document.getElementById('chip-name').textContent=u.name;document.getElementById('seller-chip').style.display='inline-flex';}}
+  else{const f=S.users.find(u=>u.role==='vendedor');window._sid=f?.id||'direct';window._snm=f?.name||'Directo';document.getElementById('seller-chip').style.display='none';}
+  renderReviews();
+}
+document.getElementById('c-nom').addEventListener('input',()=>{document.getElementById('pay-ref').textContent=document.getElementById('c-nom').value||'Tu nombre';});
+
+function chgQty(d){qty=Math.max(1,Math.min(50,qty+d));document.getElementById('qty-n').textContent=qty;calcular();}
+function calcular(){
+  const t=document.getElementById('c-tipo').value;
+  const lbl={docena:'docena(s)',media:'media(s) docena'};
+  document.getElementById('qty-u').textContent=lbl[t];
+  const p=S.config.precios[t],sub=p*qty;let desc=0,tot=sub;
+  if(t==='docena'&&qty>=2){desc=p*0.20;tot=sub-desc;document.getElementById('p-dr').style.display='flex';document.getElementById('p-d').textContent='−'+fmtCLP(desc);}
+  else document.getElementById('p-dr').style.display='none';
+  document.getElementById('p-u').textContent=fmtCLP(p);
+  document.getElementById('p-s').textContent=fmtCLP(sub);
+  document.getElementById('p-t').textContent=fmtCLP(tot);
+  document.getElementById('pay-big').textContent=fmtCLP(tot);
+}
+function confirmar(){
+  const n=document.getElementById('c-nom').value.trim();
+  if(!n){toast('Ingresa tu nombre para continuar');document.getElementById('c-nom').focus();return;}
+  const t=document.getElementById('c-tipo').value,tel=document.getElementById('c-tel').value.trim();
+  const p=S.config.precios[t],sub=p*qty;let desc=0;if(t==='docena'&&qty>=2)desc=p*0.20;
+  const tot=sub-desc;
+  const nm={docena:'Docena',media:'Media docena'};
+  const hv={docena:12,media:6};
+  const cod='ELK-'+Date.now().toString().slice(-6),now=new Date();
+  S.ventas.unshift({id:cod,nombre:n,tel,tipo:t,tipoNombre:nm[t],cantidad:qty,precioUnit:p,descuento:desc,total:tot,huevos:hv[t]*qty,fecha:now.toISOString(),dia:now.getDate(),semana:getWk(now),mes:now.getMonth(),anio:now.getFullYear(),sellerId:window._sid||'direct',sellerName:window._snm||'Directo'});
+  saveS();
+  document.getElementById('s-code').textContent=cod;
+  document.getElementById('s-res').textContent=`${n} · ${qty} ${nm[t]} · ${fmtCLP(tot)}`;
+  document.getElementById('sov').classList.add('show');
+  document.getElementById('c-nom').value='';document.getElementById('c-tel').value='';
+  document.getElementById('c-tipo').value='docena';qty=1;document.getElementById('qty-n').textContent='1';calcular();
+}
+
+// ── REVIEWS ──
+function setStar(v){
+  selStar=v;
+  document.querySelectorAll('.star-btn').forEach((b,i)=>b.classList.toggle('on',i<v));
+}
+function enviarReview(){
+  const n=document.getElementById('rev-nom').value.trim();
+  const txt=document.getElementById('rev-txt').value.trim();
+  if(!n){toast('Ingresa tu nombre');return;}
+  if(!selStar){toast('Selecciona una calificación');return;}
+  if(!txt){toast('Escribe tu experiencia');return;}
+  S.reviews.unshift({nombre:n,estrellas:selStar,texto:txt,fecha:new Date().toISOString()});
+  saveS();
+  document.getElementById('rev-nom').value='';document.getElementById('rev-txt').value='';
+  selStar=0;document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('on'));
+  renderReviews();toast('¡Gracias por tu evaluación! ★');
+}
+function renderReviews(){
+  const el=document.getElementById('reviews-lista');
+  if(!S.reviews.length){el.innerHTML='<div class="no-reviews">Sé el primero en dejar tu evaluación ✨</div>';return;}
+  el.innerHTML=S.reviews.slice(0,5).map(r=>{
+    const d=new Date(r.fecha),ds=d.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'});
+    const stars='★'.repeat(r.estrellas)+'☆'.repeat(5-r.estrellas);
+    return `<div class="rev-card"><div class="rev-header"><div><div class="rev-name">${r.nombre}</div><div class="rev-date">${ds}</div></div><div class="rev-stars">${stars}</div></div><div class="rev-text">${r.texto}</div></div>`;
+  }).join('');
+}
+
+// SHARE
+function getShareTxt(){return `🥚 *ELKAN — Huevos Azules Mapuche*\n\n¡Hola! Te comparto el enlace para pedir y pagar tus huevos azules de gallina mapuche directamente.\n\n🔗 ${getLink()}\n\n📦 Elige tu presentación:\n• Media docena (6 huevos) — $${S.config.precios.media.toLocaleString('es-CL')}\n• Docena (12 huevos) — $${S.config.precios.docena.toLocaleString('es-CL')}\n\n🎁 *Promo:* 2 docenas y la segunda con 20% de descuento.\n\n📸 Una vez transferido, envíame el comprobante para confirmar tu pedido.\n\n✨ Crianza ancestral · Gallina mapuche Kollonka y Ketro`;}
+function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(getShareTxt()),'_blank');}
+function shareIG(){navigator.clipboard.writeText(getShareTxt()).then(()=>toast('Texto copiado — pégalo en Instagram'));}
+function copyLink(){navigator.clipboard.writeText(getLink()).then(()=>toast('Enlace copiado ✓'));}
+
+// ── SELLER ──
+function sTab(t,el){
+  ['res','lnk','vnt'].forEach(id=>{const e=document.getElementById('st-'+id);if(e)e.style.display=id===t?'block':'none';});
+  document.querySelectorAll('#screen-seller .tab-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');
+  if(t==='vnt')renderSelSales();if(t==='lnk')updLink();
+}
+function initSeller(){
+  document.getElementById('sel-nav').textContent=CU.name;
+  document.getElementById('sel-welcome').textContent='◆ '+CU.name.toUpperCase();
+  document.getElementById('sel-date').textContent=new Date().toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  ['res','lnk','vnt'].forEach(id=>{const e=document.getElementById('st-'+id);if(e)e.style.display=id==='res'?'block':'none';});
+  document.querySelectorAll('#screen-seller .tab-btn').forEach((b,i)=>b.classList[i===0?'add':'remove']('active'));
+  updSelStats();updLink();
+}
+function updSelStats(){
+  const now=new Date(),mes=now.getMonth(),hoy=now.getDate();
+  const mm=S.ventas.filter(v=>new Date(v.fecha).getMonth()===mes&&v.sellerId===CU.id);
+  const mh=mm.filter(v=>new Date(v.fecha).getDate()===hoy);
+  const im=mm.reduce((s,v)=>s+v.total,0);
+  document.getElementById('ss-p').textContent=mh.length;
+  document.getElementById('ss-i').textContent=fmtShort(mh.reduce((s,v)=>s+v.total,0));
+  document.getElementById('ss-m').textContent=fmtShort(im);
+  document.getElementById('ss-h').textContent=mm.reduce((s,v)=>s+v.huevos,0);
+  const mt=S.config.metaMensual,pct=mt>0?Math.min(100,Math.round(im/mt*100)):0;
+  document.getElementById('sm-a').textContent=fmtShort(im);document.getElementById('sm-t').textContent=fmtShort(mt);
+  document.getElementById('sm-b').style.width=pct+'%';document.getElementById('sm-p').textContent=pct+'% de la meta mensual';
+}
+function updLink(){
+  if(!CU)return;
+  document.getElementById('my-link').textContent=getLink();
+  document.getElementById('msg-tmpl').textContent=getShareTxt();
+}
+function renderSelSales(){
+  const mis=S.ventas.filter(v=>v.sellerId===CU.id);
+  document.getElementById('sel-sales').innerHTML=mis.length?mis.map(v=>sCard(v)).join(''):'<div class="empty-st"><div class="ei">📭</div><p>Aún no tienes ventas registradas</p></div>';
+}
+function sWA(){window.open('https://wa.me/?text='+encodeURIComponent(getShareTxt()),'_blank');}
+function sIG(){navigator.clipboard.writeText(getShareTxt()).then(()=>toast('Texto copiado'));}
+function cpLink(){navigator.clipboard.writeText(getLink()).then(()=>toast('Enlace copiado ✓'));}
+function cpMsg(){navigator.clipboard.writeText(getShareTxt()).then(()=>toast('Mensaje copiado ✓'));}
+
+// ── ADMIN ──
+function aTab(t,el){
+  ['dsh','vnt','rev','eqp','cfg'].forEach(id=>{const e=document.getElementById('at-'+id);if(e)e.style.display=id===t?'block':'none';});
+  document.querySelectorAll('#screen-admin .tab-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');
+  if(t==='dsh')updDash();if(t==='vnt')renderAllSales();if(t==='rev')renderAdminRevs();if(t==='eqp')renderUsers();if(t==='cfg')loadCfg();
+}
+function initAdmin(){
+  document.getElementById('a-fecha').textContent=new Date().toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  ['dsh','vnt','rev','eqp','cfg'].forEach(id=>{const e=document.getElementById('at-'+id);if(e)e.style.display=id==='dsh'?'block':'none';});
+  document.querySelectorAll('#screen-admin .tab-btn').forEach((b,i)=>b.classList[i===0?'add':'remove']('active'));
+  updDash();
+}
+function updDash(){
+  const now=new Date(),mes=now.getMonth(),hoy=now.getDate(),sem=getWk(now);
+  const vm=S.ventas.filter(v=>new Date(v.fecha).getMonth()===mes);
+  const vh=vm.filter(v=>new Date(v.fecha).getDate()===hoy);
+  const vs=vm.filter(v=>getWk(new Date(v.fecha))===sem);
+  const ih=vh.reduce((s,v)=>s+v.total,0),im=vm.reduce((s,v)=>s+v.total,0),is=vs.reduce((s,v)=>s+v.total,0);
+  document.getElementById('a-ph').textContent=vh.length;
+  document.getElementById('a-ih').textContent=fmtShort(ih);
+  document.getElementById('a-hm').textContent=vm.reduce((s,v)=>s+v.huevos,0);
+  document.getElementById('a-cm').textContent=new Set(vm.map(v=>v.nombre.toLowerCase())).size;
+  document.getElementById('a-im').textContent=fmtCLP(im);
+  const pd={};vm.forEach(v=>{const d=new Date(v.fecha).getDate();pd[d]=(pd[d]||0)+v.total;});
+  let md='—',mv=0;Object.entries(pd).forEach(([d,val])=>{if(val>mv){mv=val;md='Día '+d+' · '+fmtShort(val);}});
+  document.getElementById('a-md').textContent=md;
+  const ms=S.config.metaSemanal,mm=S.config.metaMensual;
+  const ps=ms>0?Math.min(100,Math.round(is/ms*100)):0,pm=mm>0?Math.min(100,Math.round(im/mm*100)):0;
+  document.getElementById('ms-a').textContent=fmtShort(is);document.getElementById('ms-t').textContent=fmtShort(ms);document.getElementById('ms-b').style.width=ps+'%';document.getElementById('ms-p').textContent=ps+'% completado';
+  document.getElementById('mm-a').textContent=fmtShort(im);document.getElementById('mm-t').textContent=fmtShort(mm);document.getElementById('mm-b').style.width=pm+'%';document.getElementById('mm-p').textContent=pm+'% completado';
+  const dm=new Date(now.getFullYear(),mes+1,0).getDate();
+  const arr=Array.from({length:dm},(_,i)=>pd[i+1]||0),mx=Math.max(...arr,1);
+  document.getElementById('a-chart').innerHTML=arr.map((v,i)=>{const d=i+1,h=Math.round((v/mx)*75);return`<div class="bc"><div class="b${d===hoy?' on':''}" style="height:${Math.max(h,3)}px" title="Día ${d}: ${fmtCLP(v)}"></div><div class="bl">${d}</div></div>`;}).join('');
+  const by={};vm.forEach(v=>{if(!by[v.sellerId])by[v.sellerId]={name:v.sellerName,total:0,count:0};by[v.sellerId].total+=v.total;by[v.sellerId].count++;});
+  const rows=Object.values(by).sort((a,b)=>b.total-a.total);
+  document.getElementById('sel-brkd').innerHTML=rows.length?rows.map(r=>`<div class="brow"><div class="bav">${r.name[0]}</div><div class="bnm"><span>${r.name}</span><small>${r.count} venta${r.count!==1?'s':''}</small></div><div class="btot">${fmtShort(r.total)}</div></div>`).join(''):'<p style="font-size:0.8rem;color:var(--gris-azul);text-align:center;padding:12px;font-style:italic;">Sin ventas este mes</p>';
+}
+function renderAllSales(){
+  const el=document.getElementById('all-sales');
+  el.innerHTML=S.ventas.length?S.ventas.map(v=>sCard(v,true)).join(''):'<div class="empty-st"><div class="ei">📭</div><p>No hay ventas registradas</p></div>';
+}
+function sCard(v,showSel=false){
+  const d=new Date(v.fecha),ds=d.toLocaleDateString('es-CL',{day:'2-digit',month:'short'})+' '+d.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'});
+  return`<div class="sale-item"><div class="sale-av">${v.nombre[0].toUpperCase()}</div><div class="sale-info"><div class="sale-name">${v.nombre}</div><div class="sale-meta">${v.cantidad} ${v.tipoNombre} · ${ds}${showSel?' · '+v.sellerName:''}</div></div><div class="sale-right"><div class="sale-tot">${fmtCLP(v.total)}</div><div class="sale-id">${v.id}</div></div></div>`;
+}
+function limpiar(){if(confirm('¿Eliminar TODAS las ventas?')){S.ventas=[];saveS();renderAllSales();updDash();toast('Ventas eliminadas');}}
+
+function renderAdminRevs(){
+  const avg=S.reviews.length?Math.round(S.reviews.reduce((s,r)=>s+r.estrellas,0)/S.reviews.length*10)/10:0;
+  document.getElementById('avg-stars').textContent=S.reviews.length?'★'.repeat(Math.round(avg))+'☆'.repeat(5-Math.round(avg)):'—';
+  document.getElementById('avg-txt').textContent=S.reviews.length?`${avg} de 5 · ${S.reviews.length} evaluación${S.reviews.length!==1?'es':''}` :'Sin evaluaciones aún';
+  const el=document.getElementById('admin-reviews');
+  if(!S.reviews.length){el.innerHTML='<div class="empty-st"><div class="ei">💬</div><p>Aún no hay evaluaciones</p></div>';return;}
+  el.innerHTML=S.reviews.map(r=>{
+    const d=new Date(r.fecha),ds=d.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'});
+    const stars='★'.repeat(r.estrellas)+'☆'.repeat(5-r.estrellas);
+    return`<div class="rev-card"><div class="rev-header"><div><div class="rev-name">${r.nombre}</div><div class="rev-date">${ds}</div></div><div class="rev-stars">${stars}</div></div><div class="rev-text">${r.texto}</div></div>`;
+  }).join('');
+}
+
+function renderUsers(){
+  document.getElementById('users-list').innerHTML=S.users.map(u=>`<div class="user-row"><div class="user-info"><span>${u.name}</span><small>${u.role==='admin'?'Administrador':'Vendedor'}</small></div><div style="display:flex;align-items:center;gap:8px;"><span class="rpill ${u.role}">${u.role==='admin'?'ADMIN':'VEND.'}</span>${u.role!=='admin'?`<button class="btn-del" onclick="delUser('${u.id}')">✕</button>`:''}</div></div>`).join('');
+}
+function openAddUser(){document.getElementById('nu-n').value='';document.getElementById('nu-p').value='';openModal('mod-user');}
+function addUser(){
+  const n=document.getElementById('nu-n').value.trim(),p=document.getElementById('nu-p').value.trim();
+  if(!n||!p){toast('Completa nombre y contraseña');return;}
+  S.users.push({id:'u'+Date.now(),name:n,role:'vendedor',pass:p});
+  saveS();closeModal('mod-user');renderUsers();fillSel();toast('Vendedor agregado ✓');
+}
+function delUser(id){if(!confirm('¿Eliminar este vendedor?'))return;S.users=S.users.filter(u=>u.id!==id);saveS();renderUsers();fillSel();toast('Eliminado');}
+
+function loadCfg(){
+  document.getElementById('cfg-banco').value=S.config.banco;
+  document.getElementById('cfg-tit').value=S.config.titular;
+  document.getElementById('cfg-cta').value=S.config.cuenta;
+  document.getElementById('cfg-p12').value=S.config.precios.docena;
+  document.getElementById('cfg-p6').value=S.config.precios.media;
+}
+function saveBank(){S.config.banco=document.getElementById('cfg-banco').value.trim();S.config.titular=document.getElementById('cfg-tit').value.trim();S.config.cuenta=document.getElementById('cfg-cta').value.trim();saveS();toast('Datos bancarios guardados ✓');}
+function savePrices(){S.config.precios.docena=parseFloat(document.getElementById('cfg-p12').value)||4000;S.config.precios.media=parseFloat(document.getElementById('cfg-p6').value)||2000;saveS();toast('Precios actualizados ✓');}
+function changePass(){const np=document.getElementById('cfg-pass').value.trim();if(!np){toast('Ingresa la nueva contraseña');return;}const a=S.users.find(u=>u.role==='admin');if(a)a.pass=np;saveS();toast('Contraseña actualizada ✓');}
+
+function openMeta(t){metaEd=t;document.getElementById('mod-meta-t').textContent=t==='s'?'META SEMANAL':'META MENSUAL';document.getElementById('mod-meta-v').value=t==='s'?S.config.metaSemanal:S.config.metaMensual;openModal('mod-meta');}
+function saveMeta(){const v=parseFloat(document.getElementById('mod-meta-v').value)||0;if(metaEd==='s')S.config.metaSemanal=v;else S.config.metaMensual=v;saveS();closeModal('mod-meta');updDash();toast('Meta guardada ✓');}
+
+function exportCSV(){
+  const rows=[['Código','Cliente','Teléfono','Producto','Cantidad','Precio Unit.','Descuento','Total','Huevos','Vendedor','Fecha']];
+  S.ventas.forEach(v=>{const d=new Date(v.fecha);rows.push([v.id,v.nombre,v.tel||'',v.tipoNombre,v.cantidad,v.precioUnit,v.descuento,v.total,v.huevos,v.sellerName,d.toLocaleString('es-CL')]);});
+  const csv=rows.map(r=>r.map(c=>`"${c}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);a.download='elkan_ventas_'+new Date().toISOString().slice(0,10)+'.csv';a.click();toast('CSV descargado ✓');
+}
+
+// ── BOOT ──
+function boot(){
+  fillSel();
+  const p=new URLSearchParams(window.location.search);
+  if(p.get('seller')){showScr('screen-client');initClient();return;}
+  showScr('screen-login');
+}
+boot();
+</script>
+</body>
+</html>

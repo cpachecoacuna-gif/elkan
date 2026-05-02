@@ -48,11 +48,7 @@ body{font-family:'Lora',serif;background:var(--azul-prof);color:var(--blanco);mi
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Cpath d='M25 2 L48 25 L25 48 L2 25 Z' fill='none' stroke='%232E7DAA' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
   pointer-events:none;
 }
-/* Siluetas decorativas login */
-.login-hens{
-  display:flex;align-items:flex-end;justify-content:center;
-  gap:8px;margin-bottom:16px;opacity:0.5;
-}
+/* login hens removed */
 
 .login-title{
   font-family:'Cinzel',serif;font-size:3rem;font-weight:900;
@@ -130,14 +126,7 @@ body{font-family:'Lora',serif;background:var(--azul-prof);color:var(--blanco);mi
 .hero-body{padding:28px 20px 0;text-align:center;position:relative;z-index:2;}
 
 /* Siluetas gallinas hero — estilo ASOGICH en azules */
-.hen-scene{
-  display:flex;align-items:flex-end;justify-content:center;
-  gap:0;margin-bottom:20px;position:relative;
-}
-.hen-scene::after{
-  content:'';position:absolute;bottom:0;left:10%;right:10%;
-  height:2px;background:linear-gradient(90deg,transparent,rgba(107,189,212,0.3),transparent);
-}
+/* hen-scene removed */
 
 .hero-tag{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:4px;color:var(--huevo);margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:10px;}
 .hero-tag::before,.hero-tag::after{content:'';flex:1;max-width:50px;height:1px;background:rgba(107,189,212,0.3);}
@@ -365,40 +354,28 @@ body{font-family:'Lora',serif;background:var(--azul-prof);color:var(--blanco);mi
 <!-- ══════════ LOGIN ══════════ -->
 <div id="screen-login" class="screen active">
   <!-- Siluetas decorativas -->
-  <div class="login-hens">
-    <!-- Kollonka (sin cola) -->
-    <svg width="55" height="60" viewBox="0 0 55 60" fill="#6BBDD4" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="30" cy="38" rx="20" ry="14"/>
-      <ellipse cx="14" cy="24" rx="11" ry="9"/>
-      <polygon points="6,21 1,18 7,20"/>
-      <polygon points="16,16 14,8 17,15 19,7 20,15 22,10 21,16"/>
-      <ellipse cx="48" cy="36" rx="4" ry="5"/>
-      <line x1="22" y1="50" x2="20" y2="60" stroke="#6BBDD4" stroke-width="2"/>
-      <line x1="32" y1="51" x2="30" y2="60" stroke="#6BBDD4" stroke-width="2"/>
-    </svg>
-    <!-- Huevo azul -->
-    <svg width="36" height="44" viewBox="0 0 36 44" xmlns="http://www.w3.org/2000/svg">
-      <defs><radialGradient id="eg" cx="35%" cy="28%"><stop offset="0%" stop-color="#C8EBF5"/><stop offset="50%" stop-color="#6BBDD4"/><stop offset="100%" stop-color="#1A4A6B"/></radialGradient></defs>
-      <ellipse cx="18" cy="22" rx="16" ry="20" fill="url(#eg)" opacity="0.9"/>
-    </svg>
-    <!-- Ketro (con aretes y cola) -->
-    <svg width="70" height="65" viewBox="0 0 70 65" fill="#A8D8E8" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="35" cy="40" rx="20" ry="14"/>
-      <ellipse cx="18" cy="26" rx="11" ry="9"/>
-      <polygon points="10,23 4,20 10,22"/>
-      <polygon points="19,17 17,9 20,16 22,8 23,16 25,11 24,17"/>
-      <ellipse cx="8" cy="28" rx="5" ry="3" transform="rotate(-20,8,28)" opacity="0.8"/>
-      <ellipse cx="7" cy="32" rx="4" ry="2" transform="rotate(-25,7,32)" opacity="0.6"/>
-      <path d="M53,36 Q63,20 68,14" stroke="#A8D8E8" stroke-width="2.5" fill="none"/>
-      <path d="M53,38 Q64,25 68,20" stroke="#A8D8E8" stroke-width="2" fill="none"/>
-      <path d="M53,40 Q62,30 66,27" stroke="#A8D8E8" stroke-width="1.5" fill="none"/>
-      <line x1="25" y1="52" x2="23" y2="62" stroke="#A8D8E8" stroke-width="2"/>
-      <line x1="35" y1="53" x2="33" y2="62" stroke="#A8D8E8" stroke-width="2"/>
+  <div style="text-align:center;position:relative;z-index:2;margin-bottom:8px;">
+    <div style="font-size:0.6rem;letter-spacing:5px;color:rgba(107,189,212,0.4);font-family:Cinzel,serif;margin-bottom:20px;">◆ ◆ ◆</div>
+    <svg width="80" height="96" viewBox="0 0 80 96" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="eggLogin" cx="35%" cy="28%">
+          <stop offset="0%" stop-color="#C8EBF5"/>
+          <stop offset="55%" stop-color="#6BBDD4"/>
+          <stop offset="100%" stop-color="#1A4A6B"/>
+        </radialGradient>
+        <radialGradient id="eggGlow" cx="50%" cy="50%">
+          <stop offset="0%" stop-color="#6BBDD4" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#6BBDD4" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="40" cy="48" rx="38" ry="46" fill="url(#eggGlow)"/>
+      <ellipse cx="40" cy="48" rx="28" ry="36" fill="url(#eggLogin)" opacity="0.95"/>
+      <ellipse cx="32" cy="36" rx="7" ry="5" fill="rgba(200,235,245,0.2)"/>
     </svg>
   </div>
 
   <div class="login-title">ELKAN</div>
-  <div class="login-sub">Huevos Azules Mapuche · Chile</div>
+  <div class="login-sub">Lo que el sur guardó</div>
   <div class="login-divider"></div>
 
   <div class="login-card">
@@ -432,37 +409,28 @@ body{font-family:'Lora',serif;background:var(--azul-prof);color:var(--blanco);mi
     </div>
     <div class="hero-body">
       <!-- Escena gallinas -->
-      <div class="hen-scene">
-        <svg width="60" height="58" viewBox="0 0 60 58" fill="#6BBDD4" opacity="0.7" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="33" cy="38" rx="20" ry="13"/>
-          <ellipse cx="16" cy="24" rx="11" ry="9"/>
-          <polygon points="8,21 2,18 8,20"/>
-          <polygon points="17,15 15,7 18,14 20,6 21,14 23,9 22,15"/>
-          <ellipse cx="51" cy="36" rx="4" ry="5"/>
-          <line x1="24" y1="49" x2="22" y2="58" stroke="#6BBDD4" stroke-width="2"/>
-          <line x1="34" y1="50" x2="32" y2="58" stroke="#6BBDD4" stroke-width="2"/>
-        </svg>
-        <svg width="44" height="54" viewBox="0 0 44 54" xmlns="http://www.w3.org/2000/svg">
-          <defs><radialGradient id="he2" cx="35%" cy="28%"><stop offset="0%" stop-color="#C8EBF5"/><stop offset="50%" stop-color="#6BBDD4"/><stop offset="100%" stop-color="#1A4A6B"/></radialGradient></defs>
-          <ellipse cx="22" cy="27" rx="20" ry="25" fill="url(#he2)" opacity="0.85"/>
-        </svg>
-        <svg width="72" height="62" viewBox="0 0 72 62" fill="#A8D8E8" opacity="0.7" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="36" cy="40" rx="20" ry="13"/>
-          <ellipse cx="19" cy="26" rx="11" ry="9"/>
-          <polygon points="11,23 5,20 11,22"/>
-          <polygon points="20,17 18,9 21,16 23,8 24,16 26,11 25,17"/>
-          <ellipse cx="9" cy="28" rx="5" ry="3" transform="rotate(-20,9,28)" opacity="0.8"/>
-          <ellipse cx="8" cy="32" rx="4" ry="2" transform="rotate(-25,8,32)" opacity="0.6"/>
-          <path d="M54,36 Q64,20 69,14" stroke="#A8D8E8" stroke-width="2.5" fill="none"/>
-          <path d="M54,38 Q65,25 69,20" stroke="#A8D8E8" stroke-width="2" fill="none"/>
-          <line x1="26" y1="51" x2="24" y2="61" stroke="#A8D8E8" stroke-width="2"/>
-          <line x1="36" y1="52" x2="34" y2="61" stroke="#A8D8E8" stroke-width="2"/>
+      <div style="text-align:center;margin-bottom:24px;position:relative;z-index:2;">
+        <svg width="70" height="84" viewBox="0 0 70 84" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="heroEgg" cx="35%" cy="28%">
+              <stop offset="0%" stop-color="#C8EBF5"/>
+              <stop offset="50%" stop-color="#6BBDD4"/>
+              <stop offset="100%" stop-color="#1A4A6B"/>
+            </radialGradient>
+            <radialGradient id="heroGlow" cx="50%" cy="50%">
+              <stop offset="0%" stop-color="#6BBDD4" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#6BBDD4" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="35" cy="42" rx="34" ry="42" fill="url(#heroGlow)"/>
+          <ellipse cx="35" cy="42" rx="26" ry="34" fill="url(#heroEgg)" opacity="0.95"/>
+          <ellipse cx="27" cy="30" rx="7" ry="5" fill="rgba(200,235,245,0.2)"/>
         </svg>
       </div>
       <div class="hero-tag">Kollonka · Ketro · Huevo Azul</div>
       <div class="hero-name">ELKAN</div>
-      <div class="hero-mapud">"Lo guardado, lo oculto" — Mapudungún</div>
-      <div class="hero-desc">Huevos azules de gallina mapuche · Crianza ancestral</div>
+      <div class="hero-mapud">"Lo que el sur guardó" — Mapudungún: Lo oculto, lo guardado</div>
+      <div class="hero-desc">No todos los huevos tienen historia · Gallina mapuche · Chile</div>
       <div class="seller-chip" id="seller-chip" style="display:none">◆ <span id="chip-name">Vendedor</span></div>
     </div>
   </div>
@@ -565,7 +533,7 @@ body{font-family:'Lora',serif;background:var(--azul-prof);color:var(--blanco);mi
 <!-- ══════════ SELLER ══════════ -->
 <div id="screen-seller" class="screen">
   <div class="top-nav">
-    <div class="nav-brand"><div class="nav-egg"></div>ELKAN</div>
+    <div class="nav-brand">◆ ELKAN</div>
     <div class="nav-right"><span class="nav-user" id="sel-nav"></span><button class="btn-out" onclick="logout()">SALIR</button></div>
   </div>
   <div class="tab-bar">
@@ -614,7 +582,7 @@ body{font-family:'Lora',serif;background:var(--azul-prof);color:var(--blanco);mi
 <!-- ══════════ ADMIN ══════════ -->
 <div id="screen-admin" class="screen">
   <div class="top-nav">
-    <div class="nav-brand"><div class="nav-egg"></div>ELKAN ADMIN</div>
+    <div class="nav-brand">◆ ELKAN ADMIN</div>
     <div class="nav-right"><span class="nav-user">Cristóbal</span><button class="btn-out" onclick="logout()">SALIR</button></div>
   </div>
   <div class="tab-bar">
@@ -728,317 +696,544 @@ body{font-family:'Lora',serif;background:var(--azul-prof);color:var(--blanco);mi
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════
-// STATE — compatible iPhone Safari, Android Chrome, todos los navegadores
-// ══════════════════════════════
-const DEF={
-  ventas:[],reviews:[],
-  config:{banco:'',titular:'',cuenta:'',precios:{docena:4000,media:2000},metaSemanal:50000,metaMensual:200000},
-  users:[
-    {id:'admin',name:'Cristóbal',role:'admin',pass:'cristobal123'},
-    {id:'u1',name:'Romina',role:'vendedor',pass:'romina123'},
-    {id:'u2',name:'Diego',role:'vendedor',pass:'diego123'},
-    {id:'u3',name:'Benjamín',role:'vendedor',pass:'benjamin123'},
-    {id:'u4',name:'Rayén',role:'vendedor',pass:'rayen123'}
-  ]
+// ══════════════════════════════════════
+// ELKAN — Sistema de ventas
+// Compatible: iPhone Safari, Android Chrome, todos los navegadores
+// ══════════════════════════════════════
+
+// USUARIOS Y CONFIGURACIÓN BASE — siempre disponibles
+const USUARIOS = [
+  {id:'admin', name:'Cristóbal', role:'admin',     pass:'cristobal123'},
+  {id:'u1',    name:'Romina',    role:'vendedor',  pass:'romina123'},
+  {id:'u2',    name:'Diego',     role:'vendedor',  pass:'diego123'},
+  {id:'u3',    name:'Benjamín',  role:'vendedor',  pass:'benjamin123'},
+  {id:'u4',    name:'Rayén',     role:'vendedor',  pass:'rayen123'}
+];
+
+const CONFIG_BASE = {
+  banco:'', titular:'', cuenta:'',
+  precios:{docena:4000, media:2000},
+  metaSemanal:50000, metaMensual:200000
 };
 
-// Memoria en RAM como respaldo cuando localStorage no está disponible
-let _memStore = null;
-let S = null;
-let CU = null, loginRole = 'vendedor', metaEd = '', qty = 1, selStar = 0;
+// ESTADO GLOBAL
+let ventas = [];
+let reviews = [];
+let config = JSON.parse(JSON.stringify(CONFIG_BASE));
+let usuarios = JSON.parse(JSON.stringify(USUARIOS));
+let CU = null;
+let loginRole = 'vendedor';
+let metaEd = '';
+let qty = 1;
+let selStar = 0;
 
-function loadS(){
+// STORAGE — con fallback si localStorage no está disponible
+function guardar(){
   try{
-    const raw=localStorage.getItem('elkan_v1');
-    if(raw){
-      const p=JSON.parse(raw);
-      // Siempre asegurar que los usuarios base estén presentes
-      const savedUsers=p.users||[];
-      const mergedUsers=[...DEF.users];
-      savedUsers.forEach(u=>{ if(!mergedUsers.find(d=>d.id===u.id)) mergedUsers.push(u); });
-      return{...DEF,...p,config:{...DEF.config,...p.config,precios:{...DEF.config.precios,...(p.config?.precios||{})}},users:mergedUsers,reviews:p.reviews||[]};
-    }
-  }catch(e){ console.log('localStorage no disponible, usando RAM'); }
-  if(_memStore) return _memStore;
-  return JSON.parse(JSON.stringify(DEF));
+    localStorage.setItem('elkan_ventas', JSON.stringify(ventas));
+    localStorage.setItem('elkan_reviews', JSON.stringify(reviews));
+    localStorage.setItem('elkan_config', JSON.stringify(config));
+    localStorage.setItem('elkan_usuarios', JSON.stringify(usuarios));
+  }catch(e){ /* Safari privado — datos solo en sesión */ }
 }
 
-function saveS(){
-  _memStore = S;
-  try{ localStorage.setItem('elkan_v1',JSON.stringify(S)); }catch(e){ console.log('Guardado en RAM'); }
+function cargar(){
+  try{
+    const v = localStorage.getItem('elkan_ventas');
+    const r = localStorage.getItem('elkan_reviews');
+    const c = localStorage.getItem('elkan_config');
+    const u = localStorage.getItem('elkan_usuarios');
+    if(v) ventas = JSON.parse(v);
+    if(r) reviews = JSON.parse(r);
+    if(c) config = {...CONFIG_BASE, ...JSON.parse(c), precios:{...CONFIG_BASE.precios, ...(JSON.parse(c).precios||{})}};
+    if(u){
+      const saved = JSON.parse(u);
+      // Siempre mantener los usuarios base con sus contraseñas originales si no fueron modificadas
+      usuarios = USUARIOS.map(base => {
+        const mod = saved.find(s => s.id === base.id);
+        return mod || base;
+      });
+      // Agregar vendedores extra creados por admin
+      saved.filter(s => !USUARIOS.find(b => b.id === s.id)).forEach(s => usuarios.push(s));
+    }
+  }catch(e){ /* usar valores por defecto */ }
 }
 
 // HELPERS
-const fmtCLP=n=>'$'+Math.round(n).toLocaleString('es-CL');
-const fmtShort=n=>n>=1000000?'$'+Math.round(n/1000000)+'M':n>=1000?'$'+Math.round(n/1000)+'k':'$'+Math.round(n);
-const getWk=d=>{const s=new Date(d.getFullYear(),0,1);return Math.ceil(((d-s)/86400000+s.getDay()+1)/7);};
-const showScr=id=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');};
-const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);};
-const openModal=id=>document.getElementById(id).classList.add('show');
-const closeModal=id=>document.getElementById(id).classList.remove('show');
-const closeSov=()=>document.getElementById('sov').classList.remove('show');
-function getLink(){const b=window.location.href.split('?')[0];return CU?b+'?seller='+encodeURIComponent(CU.id):b;}
+const fmtCLP = n => '$' + Math.round(n).toLocaleString('es-CL');
+const fmtShort = n => n >= 1000000 ? '$' + Math.round(n/1000000) + 'M' : n >= 1000 ? '$' + Math.round(n/1000) + 'k' : '$' + Math.round(n);
+const getWk = d => { const s = new Date(d.getFullYear(),0,1); return Math.ceil(((d-s)/86400000+s.getDay()+1)/7); };
 
-// ── LOGIN ──
-function setRole(r,el){
-  loginRole=r;
-  document.querySelectorAll('.rtab').forEach(b=>b.classList.remove('active'));el.classList.add('active');
-  document.getElementById('fl-sel').style.display=r==='vendedor'?'block':'none';
-  document.getElementById('fl-usr').style.display=r==='admin'?'block':'none';
+function showScr(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
+
+function toast(m){
+  const t = document.getElementById('toast');
+  t.textContent = m;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function openModal(id){ document.getElementById(id).classList.add('show'); }
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+function closeSov(){ document.getElementById('sov').classList.remove('show'); }
+
+function getLink(){
+  const b = window.location.href.split('?')[0];
+  return CU ? b + '?seller=' + encodeURIComponent(CU.id) : b;
+}
+
+// ══ LOGIN ══
+function setRole(r, el){
+  loginRole = r;
+  document.querySelectorAll('.rtab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('fl-sel').style.display = r === 'vendedor' ? 'block' : 'none';
+  document.getElementById('fl-usr').style.display = r === 'admin' ? 'block' : 'none';
+}
+
 function fillSel(){
-  const s=document.getElementById('l-sel');
-  s.innerHTML='<option value="">Selecciona tu nombre…</option>';
-  const users = (S&&S.users)?S.users:DEF.users;
-  const vendedores=DEF.users.filter(u=>u.role==='vendedor');
-  users.filter(u=>u.role==='vendedor'&&!DEF.users.find(d=>d.id===u.id)).forEach(u=>vendedores.push(u));
-  vendedores.forEach(u=>{s.innerHTML+=`<option value="${u.id}">${u.name}</option>`;});
-}
-function doLogin(){
-  const pass=document.getElementById('l-pass').value.trim();
-  const err=document.getElementById('l-err');err.style.display='none';
-  if(!pass){err.textContent='Ingresa tu contraseña';err.style.display='block';return;}
-  // Siempre verificar contra DEF.users primero — funciona sin localStorage
-  const savedUsers=(S&&S.users)?S.users:[];
-  const allUsers=DEF.users.map(d=>{
-    const saved=savedUsers.find(u=>u.id===d.id);
-    return saved||d;
+  const sel = document.getElementById('l-sel');
+  sel.innerHTML = '<option value="">Selecciona tu nombre…</option>';
+  usuarios.filter(u => u.role === 'vendedor').forEach(u => {
+    sel.innerHTML += `<option value="${u.id}">${u.name}</option>`;
   });
-  savedUsers.forEach(u=>{ if(!allUsers.find(a=>a.id===u.id)) allUsers.push(u); });
-  if(S) S.users=allUsers;
-  if(loginRole==='admin'){
-    const adm=allUsers.find(u=>u.role==='admin'&&u.pass===pass);
-    if(adm){CU=adm;showScr('screen-admin');initAdmin();return;}
-  }else{
-    const id=document.getElementById('l-sel').value;
-    if(!id){err.textContent='Selecciona tu nombre';err.style.display='block';return;}
-    const u=allUsers.find(u=>u.id===id&&u.pass===pass);
-    if(u){CU=u;showScr('screen-seller');initSeller();return;}
-  }
-  err.textContent='Contraseña incorrecta';err.style.display='block';
 }
-function logout(){CU=null;document.getElementById('l-pass').value='';showScr('screen-login');fillSel();}
 
-// ── CLIENT ──
+function doLogin(){
+  const pass = document.getElementById('l-pass').value.trim();
+  const err = document.getElementById('l-err');
+  err.style.display = 'none';
+
+  if(!pass){
+    err.textContent = 'Ingresa tu contraseña';
+    err.style.display = 'block';
+    return;
+  }
+
+  if(loginRole === 'admin'){
+    const adm = usuarios.find(u => u.role === 'admin' && u.pass === pass);
+    if(adm){ CU = adm; showScr('screen-admin'); initAdmin(); return; }
+  } else {
+    const id = document.getElementById('l-sel').value;
+    if(!id){
+      err.textContent = 'Selecciona tu nombre';
+      err.style.display = 'block';
+      return;
+    }
+    const u = usuarios.find(u => u.id === id && u.pass === pass);
+    if(u){ CU = u; showScr('screen-seller'); initSeller(); return; }
+  }
+
+  err.textContent = 'Contraseña incorrecta';
+  err.style.display = 'block';
+}
+
+function logout(){
+  CU = null;
+  document.getElementById('l-pass').value = '';
+  showScr('screen-login');
+  fillSel();
+}
+
+// ══ CLIENT ══
 function initClient(){
   calcular();
-  document.getElementById('pay-banco').textContent=S.config.banco||'—';
-  document.getElementById('pay-titular').textContent=S.config.titular||'—';
-  document.getElementById('pay-cuenta').textContent=S.config.cuenta||'—';
-  const p=new URLSearchParams(window.location.search),sid=p.get('seller');
-  if(sid){const u=S.users.find(u=>u.id===sid);if(u){window._sid=sid;window._snm=u.name;document.getElementById('chip-name').textContent=u.name;document.getElementById('seller-chip').style.display='inline-flex';}}
-  else{const f=S.users.find(u=>u.role==='vendedor');window._sid=f?.id||'direct';window._snm=f?.name||'Directo';document.getElementById('seller-chip').style.display='none';}
+  document.getElementById('pay-banco').textContent = config.banco || '—';
+  document.getElementById('pay-titular').textContent = config.titular || '—';
+  document.getElementById('pay-cuenta').textContent = config.cuenta || '—';
+  const p = new URLSearchParams(window.location.search);
+  const sid = p.get('seller');
+  if(sid){
+    const u = usuarios.find(u => u.id === sid);
+    if(u){
+      window._sid = sid;
+      window._snm = u.name;
+      document.getElementById('chip-name').textContent = u.name;
+      document.getElementById('seller-chip').style.display = 'inline-flex';
+    }
+  } else {
+    const f = usuarios.find(u => u.role === 'vendedor');
+    window._sid = f ? f.id : 'direct';
+    window._snm = f ? f.name : 'Directo';
+    document.getElementById('seller-chip').style.display = 'none';
+  }
   renderReviews();
 }
-document.getElementById('c-nom').addEventListener('input',()=>{document.getElementById('pay-ref').textContent=document.getElementById('c-nom').value||'Tu nombre';});
 
-function chgQty(d){qty=Math.max(1,Math.min(50,qty+d));document.getElementById('qty-n').textContent=qty;calcular();}
+document.getElementById('c-nom').addEventListener('input', () => {
+  document.getElementById('pay-ref').textContent = document.getElementById('c-nom').value || 'Tu nombre';
+});
+
+function chgQty(d){
+  qty = Math.max(1, Math.min(50, qty + d));
+  document.getElementById('qty-n').textContent = qty;
+  calcular();
+}
+
 function calcular(){
-  const t=document.getElementById('c-tipo').value;
-  const lbl={docena:'docena(s)',media:'media(s) docena'};
-  document.getElementById('qty-u').textContent=lbl[t];
-  const p=S.config.precios[t],sub=p*qty;let desc=0,tot=sub;
-  if(t==='docena'&&qty>=2){desc=p*0.20;tot=sub-desc;document.getElementById('p-dr').style.display='flex';document.getElementById('p-d').textContent='−'+fmtCLP(desc);}
-  else document.getElementById('p-dr').style.display='none';
-  document.getElementById('p-u').textContent=fmtCLP(p);
-  document.getElementById('p-s').textContent=fmtCLP(sub);
-  document.getElementById('p-t').textContent=fmtCLP(tot);
-  document.getElementById('pay-big').textContent=fmtCLP(tot);
-}
-function confirmar(){
-  const n=document.getElementById('c-nom').value.trim();
-  if(!n){toast('Ingresa tu nombre para continuar');document.getElementById('c-nom').focus();return;}
-  const t=document.getElementById('c-tipo').value,tel=document.getElementById('c-tel').value.trim();
-  const p=S.config.precios[t],sub=p*qty;let desc=0;if(t==='docena'&&qty>=2)desc=p*0.20;
-  const tot=sub-desc;
-  const nm={docena:'Docena',media:'Media docena'};
-  const hv={docena:12,media:6};
-  const cod='ELK-'+Date.now().toString().slice(-6),now=new Date();
-  S.ventas.unshift({id:cod,nombre:n,tel,tipo:t,tipoNombre:nm[t],cantidad:qty,precioUnit:p,descuento:desc,total:tot,huevos:hv[t]*qty,fecha:now.toISOString(),dia:now.getDate(),semana:getWk(now),mes:now.getMonth(),anio:now.getFullYear(),sellerId:window._sid||'direct',sellerName:window._snm||'Directo'});
-  saveS();
-  document.getElementById('s-code').textContent=cod;
-  document.getElementById('s-res').textContent=`${n} · ${qty} ${nm[t]} · ${fmtCLP(tot)}`;
-  document.getElementById('sov').classList.add('show');
-  document.getElementById('c-nom').value='';document.getElementById('c-tel').value='';
-  document.getElementById('c-tipo').value='docena';qty=1;document.getElementById('qty-n').textContent='1';calcular();
+  const t = document.getElementById('c-tipo').value;
+  const lbl = {docena:'docena(s)', media:'media(s) docena'};
+  document.getElementById('qty-u').textContent = lbl[t];
+  const p = config.precios[t];
+  const sub = p * qty;
+  let desc = 0, tot = sub;
+  if(t === 'docena' && qty >= 2){
+    desc = p * 0.20;
+    tot = sub - desc;
+    document.getElementById('p-dr').style.display = 'flex';
+    document.getElementById('p-d').textContent = '−' + fmtCLP(desc);
+  } else {
+    document.getElementById('p-dr').style.display = 'none';
+  }
+  document.getElementById('p-u').textContent = fmtCLP(p);
+  document.getElementById('p-s').textContent = fmtCLP(sub);
+  document.getElementById('p-t').textContent = fmtCLP(tot);
+  document.getElementById('pay-big').textContent = fmtCLP(tot);
 }
 
-// ── REVIEWS ──
+function confirmar(){
+  const n = document.getElementById('c-nom').value.trim();
+  if(!n){ toast('Ingresa tu nombre para continuar'); document.getElementById('c-nom').focus(); return; }
+  const t = document.getElementById('c-tipo').value;
+  const tel = document.getElementById('c-tel').value.trim();
+  const p = config.precios[t];
+  const sub = p * qty;
+  let desc = 0;
+  if(t === 'docena' && qty >= 2) desc = p * 0.20;
+  const tot = sub - desc;
+  const nm = {docena:'Docena', media:'Media docena'};
+  const hv = {docena:12, media:6};
+  const cod = 'ELK-' + Date.now().toString().slice(-6);
+  const now = new Date();
+  ventas.unshift({
+    id:cod, nombre:n, tel, tipo:t, tipoNombre:nm[t],
+    cantidad:qty, precioUnit:p, descuento:desc, total:tot,
+    huevos:hv[t]*qty, fecha:now.toISOString(),
+    dia:now.getDate(), semana:getWk(now), mes:now.getMonth(), anio:now.getFullYear(),
+    sellerId:window._sid||'direct', sellerName:window._snm||'Directo'
+  });
+  guardar();
+  document.getElementById('s-code').textContent = cod;
+  document.getElementById('s-res').textContent = `${n} · ${qty} ${nm[t]} · ${fmtCLP(tot)}`;
+  document.getElementById('sov').classList.add('show');
+  document.getElementById('c-nom').value = '';
+  document.getElementById('c-tel').value = '';
+  document.getElementById('c-tipo').value = 'docena';
+  qty = 1;
+  document.getElementById('qty-n').textContent = '1';
+  calcular();
+}
+
+// ══ REVIEWS ══
 function setStar(v){
-  selStar=v;
-  document.querySelectorAll('.star-btn').forEach((b,i)=>b.classList.toggle('on',i<v));
+  selStar = v;
+  document.querySelectorAll('.star-btn').forEach((b,i) => b.classList.toggle('on', i < v));
 }
+
 function enviarReview(){
-  const n=document.getElementById('rev-nom').value.trim();
-  const txt=document.getElementById('rev-txt').value.trim();
-  if(!n){toast('Ingresa tu nombre');return;}
-  if(!selStar){toast('Selecciona una calificación');return;}
-  if(!txt){toast('Escribe tu experiencia');return;}
-  S.reviews.unshift({nombre:n,estrellas:selStar,texto:txt,fecha:new Date().toISOString()});
-  saveS();
-  document.getElementById('rev-nom').value='';document.getElementById('rev-txt').value='';
-  selStar=0;document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('on'));
-  renderReviews();toast('¡Gracias por tu evaluación! ★');
+  const n = document.getElementById('rev-nom').value.trim();
+  const txt = document.getElementById('rev-txt').value.trim();
+  if(!n){ toast('Ingresa tu nombre'); return; }
+  if(!selStar){ toast('Selecciona una calificación'); return; }
+  if(!txt){ toast('Escribe tu experiencia'); return; }
+  reviews.unshift({nombre:n, estrellas:selStar, texto:txt, fecha:new Date().toISOString()});
+  guardar();
+  document.getElementById('rev-nom').value = '';
+  document.getElementById('rev-txt').value = '';
+  selStar = 0;
+  document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('on'));
+  renderReviews();
+  toast('¡Gracias por tu evaluación! ★');
 }
+
 function renderReviews(){
-  const el=document.getElementById('reviews-lista');
-  if(!S.reviews.length){el.innerHTML='<div class="no-reviews">Sé el primero en dejar tu evaluación ✨</div>';return;}
-  el.innerHTML=S.reviews.slice(0,5).map(r=>{
-    const d=new Date(r.fecha),ds=d.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'});
-    const stars='★'.repeat(r.estrellas)+'☆'.repeat(5-r.estrellas);
+  const el = document.getElementById('reviews-lista');
+  if(!reviews.length){ el.innerHTML = '<div class="no-reviews">Sé el primero en dejar tu evaluación ✨</div>'; return; }
+  el.innerHTML = reviews.slice(0,5).map(r => {
+    const d = new Date(r.fecha);
+    const ds = d.toLocaleDateString('es-CL', {day:'2-digit', month:'short', year:'numeric'});
+    const stars = '★'.repeat(r.estrellas) + '☆'.repeat(5 - r.estrellas);
     return `<div class="rev-card"><div class="rev-header"><div><div class="rev-name">${r.nombre}</div><div class="rev-date">${ds}</div></div><div class="rev-stars">${stars}</div></div><div class="rev-text">${r.texto}</div></div>`;
   }).join('');
 }
 
 // SHARE
-function getShareTxt(){return `🥚 *ELKAN — Huevos Azules Mapuche*\n\n¡Hola! Te comparto el enlace para pedir y pagar tus huevos azules de gallina mapuche directamente.\n\n🔗 ${getLink()}\n\n📦 Elige tu presentación:\n• Media docena (6 huevos) — $${S.config.precios.media.toLocaleString('es-CL')}\n• Docena (12 huevos) — $${S.config.precios.docena.toLocaleString('es-CL')}\n\n🎁 *Promo:* 2 docenas y la segunda con 20% de descuento.\n\n📸 Una vez transferido, envíame el comprobante para confirmar tu pedido.\n\n✨ Crianza ancestral · Gallina mapuche Kollonka y Ketro`;}
-function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(getShareTxt()),'_blank');}
-function shareIG(){navigator.clipboard.writeText(getShareTxt()).then(()=>toast('Texto copiado — pégalo en Instagram'));}
-function copyLink(){navigator.clipboard.writeText(getLink()).then(()=>toast('Enlace copiado ✓'));}
+function getShareTxt(){
+  return `🥚 *ELKAN — Huevos Azules Mapuche*
 
-// ── SELLER ──
-function sTab(t,el){
-  ['res','lnk','vnt'].forEach(id=>{const e=document.getElementById('st-'+id);if(e)e.style.display=id===t?'block':'none';});
-  document.querySelectorAll('#screen-seller .tab-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');
-  if(t==='vnt')renderSelSales();if(t==='lnk')updLink();
+¡Hola! Te comparto el enlace para pedir y pagar tus huevos azules de gallina mapuche.
+
+🔗 ${getLink()}
+
+📦 Presentaciones:
+• Media docena (6 huevos) — ${fmtCLP(config.precios.media)}
+• Docena (12 huevos) — ${fmtCLP(config.precios.docena)}
+
+🎁 Promo: 2 docenas y la segunda con 20% de descuento.
+
+📸 Envía el comprobante para confirmar tu pedido.
+
+✨ Crianza ancestral · Gallina mapuche`;
 }
+function shareWA(){ window.open('https://wa.me/?text=' + encodeURIComponent(getShareTxt()), '_blank'); }
+function shareIG(){ navigator.clipboard.writeText(getShareTxt()).then(() => toast('Texto copiado — pégalo en Instagram')); }
+function copyLink(){ navigator.clipboard.writeText(getLink()).then(() => toast('Enlace copiado ✓')); }
+
+// ══ SELLER ══
+function sTab(t, el){
+  ['res','lnk','vnt'].forEach(id => {
+    const e = document.getElementById('st-' + id);
+    if(e) e.style.display = id === t ? 'block' : 'none';
+  });
+  document.querySelectorAll('#screen-seller .tab-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  if(t === 'vnt') renderSelSales();
+  if(t === 'lnk') updLink();
+}
+
 function initSeller(){
-  document.getElementById('sel-nav').textContent=CU.name;
-  document.getElementById('sel-welcome').textContent='◆ '+CU.name.toUpperCase();
-  document.getElementById('sel-date').textContent=new Date().toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  ['res','lnk','vnt'].forEach(id=>{const e=document.getElementById('st-'+id);if(e)e.style.display=id==='res'?'block':'none';});
-  document.querySelectorAll('#screen-seller .tab-btn').forEach((b,i)=>b.classList[i===0?'add':'remove']('active'));
-  updSelStats();updLink();
+  document.getElementById('sel-nav').textContent = CU.name;
+  document.getElementById('sel-welcome').textContent = '◆ ' + CU.name.toUpperCase();
+  document.getElementById('sel-date').textContent = new Date().toLocaleDateString('es-CL', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  ['res','lnk','vnt'].forEach(id => {
+    const e = document.getElementById('st-' + id);
+    if(e) e.style.display = id === 'res' ? 'block' : 'none';
+  });
+  document.querySelectorAll('#screen-seller .tab-btn').forEach((b,i) => b.classList[i===0?'add':'remove']('active'));
+  updSelStats();
+  updLink();
 }
-function updSelStats(){
-  const now=new Date(),mes=now.getMonth(),hoy=now.getDate();
-  const mm=S.ventas.filter(v=>new Date(v.fecha).getMonth()===mes&&v.sellerId===CU.id);
-  const mh=mm.filter(v=>new Date(v.fecha).getDate()===hoy);
-  const im=mm.reduce((s,v)=>s+v.total,0);
-  document.getElementById('ss-p').textContent=mh.length;
-  document.getElementById('ss-i').textContent=fmtShort(mh.reduce((s,v)=>s+v.total,0));
-  document.getElementById('ss-m').textContent=fmtShort(im);
-  document.getElementById('ss-h').textContent=mm.reduce((s,v)=>s+v.huevos,0);
-  const mt=S.config.metaMensual,pct=mt>0?Math.min(100,Math.round(im/mt*100)):0;
-  document.getElementById('sm-a').textContent=fmtShort(im);document.getElementById('sm-t').textContent=fmtShort(mt);
-  document.getElementById('sm-b').style.width=pct+'%';document.getElementById('sm-p').textContent=pct+'% de la meta mensual';
-}
-function updLink(){
-  if(!CU)return;
-  document.getElementById('my-link').textContent=getLink();
-  document.getElementById('msg-tmpl').textContent=getShareTxt();
-}
-function renderSelSales(){
-  const mis=S.ventas.filter(v=>v.sellerId===CU.id);
-  document.getElementById('sel-sales').innerHTML=mis.length?mis.map(v=>sCard(v)).join(''):'<div class="empty-st"><div class="ei">📭</div><p>Aún no tienes ventas registradas</p></div>';
-}
-function sWA(){window.open('https://wa.me/?text='+encodeURIComponent(getShareTxt()),'_blank');}
-function sIG(){navigator.clipboard.writeText(getShareTxt()).then(()=>toast('Texto copiado'));}
-function cpLink(){navigator.clipboard.writeText(getLink()).then(()=>toast('Enlace copiado ✓'));}
-function cpMsg(){navigator.clipboard.writeText(getShareTxt()).then(()=>toast('Mensaje copiado ✓'));}
 
-// ── ADMIN ──
-function aTab(t,el){
-  ['dsh','vnt','rev','eqp','cfg'].forEach(id=>{const e=document.getElementById('at-'+id);if(e)e.style.display=id===t?'block':'none';});
-  document.querySelectorAll('#screen-admin .tab-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');
-  if(t==='dsh')updDash();if(t==='vnt')renderAllSales();if(t==='rev')renderAdminRevs();if(t==='eqp')renderUsers();if(t==='cfg')loadCfg();
+function updSelStats(){
+  const now = new Date(), mes = now.getMonth(), hoy = now.getDate();
+  const mm = ventas.filter(v => new Date(v.fecha).getMonth() === mes && v.sellerId === CU.id);
+  const mh = mm.filter(v => new Date(v.fecha).getDate() === hoy);
+  const im = mm.reduce((s,v) => s + v.total, 0);
+  document.getElementById('ss-p').textContent = mh.length;
+  document.getElementById('ss-i').textContent = fmtShort(mh.reduce((s,v) => s + v.total, 0));
+  document.getElementById('ss-m').textContent = fmtShort(im);
+  document.getElementById('ss-h').textContent = mm.reduce((s,v) => s + v.huevos, 0);
+  const mt = config.metaMensual;
+  const pct = mt > 0 ? Math.min(100, Math.round(im/mt*100)) : 0;
+  document.getElementById('sm-a').textContent = fmtShort(im);
+  document.getElementById('sm-t').textContent = fmtShort(mt);
+  document.getElementById('sm-b').style.width = pct + '%';
+  document.getElementById('sm-p').textContent = pct + '% de la meta mensual';
 }
+
+function updLink(){
+  if(!CU) return;
+  document.getElementById('my-link').textContent = getLink();
+  document.getElementById('msg-tmpl').textContent = getShareTxt();
+}
+
+function renderSelSales(){
+  const mis = ventas.filter(v => v.sellerId === CU.id);
+  document.getElementById('sel-sales').innerHTML = mis.length
+    ? mis.map(v => sCard(v)).join('')
+    : '<div class="empty-st"><div class="ei">📭</div><p>Aún no tienes ventas registradas</p></div>';
+}
+
+function sWA(){ window.open('https://wa.me/?text=' + encodeURIComponent(getShareTxt()), '_blank'); }
+function sIG(){ navigator.clipboard.writeText(getShareTxt()).then(() => toast('Texto copiado')); }
+function cpLink(){ navigator.clipboard.writeText(getLink()).then(() => toast('Enlace copiado ✓')); }
+function cpMsg(){ navigator.clipboard.writeText(getShareTxt()).then(() => toast('Mensaje copiado ✓')); }
+
+// ══ ADMIN ══
+function aTab(t, el){
+  ['dsh','vnt','rev','eqp','cfg'].forEach(id => {
+    const e = document.getElementById('at-' + id);
+    if(e) e.style.display = id === t ? 'block' : 'none';
+  });
+  document.querySelectorAll('#screen-admin .tab-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  if(t === 'dsh') updDash();
+  if(t === 'vnt') renderAllSales();
+  if(t === 'rev') renderAdminRevs();
+  if(t === 'eqp') renderUsers();
+  if(t === 'cfg') loadCfg();
+}
+
 function initAdmin(){
-  document.getElementById('a-fecha').textContent=new Date().toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  ['dsh','vnt','rev','eqp','cfg'].forEach(id=>{const e=document.getElementById('at-'+id);if(e)e.style.display=id==='dsh'?'block':'none';});
-  document.querySelectorAll('#screen-admin .tab-btn').forEach((b,i)=>b.classList[i===0?'add':'remove']('active'));
+  document.getElementById('a-fecha').textContent = new Date().toLocaleDateString('es-CL', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  ['dsh','vnt','rev','eqp','cfg'].forEach(id => {
+    const e = document.getElementById('at-' + id);
+    if(e) e.style.display = id === 'dsh' ? 'block' : 'none';
+  });
+  document.querySelectorAll('#screen-admin .tab-btn').forEach((b,i) => b.classList[i===0?'add':'remove']('active'));
   updDash();
 }
+
 function updDash(){
-  const now=new Date(),mes=now.getMonth(),hoy=now.getDate(),sem=getWk(now);
-  const vm=S.ventas.filter(v=>new Date(v.fecha).getMonth()===mes);
-  const vh=vm.filter(v=>new Date(v.fecha).getDate()===hoy);
-  const vs=vm.filter(v=>getWk(new Date(v.fecha))===sem);
-  const ih=vh.reduce((s,v)=>s+v.total,0),im=vm.reduce((s,v)=>s+v.total,0),is=vs.reduce((s,v)=>s+v.total,0);
-  document.getElementById('a-ph').textContent=vh.length;
-  document.getElementById('a-ih').textContent=fmtShort(ih);
-  document.getElementById('a-hm').textContent=vm.reduce((s,v)=>s+v.huevos,0);
-  document.getElementById('a-cm').textContent=new Set(vm.map(v=>v.nombre.toLowerCase())).size;
-  document.getElementById('a-im').textContent=fmtCLP(im);
-  const pd={};vm.forEach(v=>{const d=new Date(v.fecha).getDate();pd[d]=(pd[d]||0)+v.total;});
-  let md='—',mv=0;Object.entries(pd).forEach(([d,val])=>{if(val>mv){mv=val;md='Día '+d+' · '+fmtShort(val);}});
-  document.getElementById('a-md').textContent=md;
-  const ms=S.config.metaSemanal,mm=S.config.metaMensual;
-  const ps=ms>0?Math.min(100,Math.round(is/ms*100)):0,pm=mm>0?Math.min(100,Math.round(im/mm*100)):0;
-  document.getElementById('ms-a').textContent=fmtShort(is);document.getElementById('ms-t').textContent=fmtShort(ms);document.getElementById('ms-b').style.width=ps+'%';document.getElementById('ms-p').textContent=ps+'% completado';
-  document.getElementById('mm-a').textContent=fmtShort(im);document.getElementById('mm-t').textContent=fmtShort(mm);document.getElementById('mm-b').style.width=pm+'%';document.getElementById('mm-p').textContent=pm+'% completado';
-  const dm=new Date(now.getFullYear(),mes+1,0).getDate();
-  const arr=Array.from({length:dm},(_,i)=>pd[i+1]||0),mx=Math.max(...arr,1);
-  document.getElementById('a-chart').innerHTML=arr.map((v,i)=>{const d=i+1,h=Math.round((v/mx)*75);return`<div class="bc"><div class="b${d===hoy?' on':''}" style="height:${Math.max(h,3)}px" title="Día ${d}: ${fmtCLP(v)}"></div><div class="bl">${d}</div></div>`;}).join('');
-  const by={};vm.forEach(v=>{if(!by[v.sellerId])by[v.sellerId]={name:v.sellerName,total:0,count:0};by[v.sellerId].total+=v.total;by[v.sellerId].count++;});
-  const rows=Object.values(by).sort((a,b)=>b.total-a.total);
-  document.getElementById('sel-brkd').innerHTML=rows.length?rows.map(r=>`<div class="brow"><div class="bav">${r.name[0]}</div><div class="bnm"><span>${r.name}</span><small>${r.count} venta${r.count!==1?'s':''}</small></div><div class="btot">${fmtShort(r.total)}</div></div>`).join(''):'<p style="font-size:0.8rem;color:var(--gris-azul);text-align:center;padding:12px;font-style:italic;">Sin ventas este mes</p>';
+  const now = new Date(), mes = now.getMonth(), hoy = now.getDate(), sem = getWk(now);
+  const vm = ventas.filter(v => new Date(v.fecha).getMonth() === mes);
+  const vh = vm.filter(v => new Date(v.fecha).getDate() === hoy);
+  const vs = vm.filter(v => getWk(new Date(v.fecha)) === sem);
+  const ih = vh.reduce((s,v) => s+v.total, 0);
+  const im = vm.reduce((s,v) => s+v.total, 0);
+  const is = vs.reduce((s,v) => s+v.total, 0);
+  document.getElementById('a-ph').textContent = vh.length;
+  document.getElementById('a-ih').textContent = fmtShort(ih);
+  document.getElementById('a-hm').textContent = vm.reduce((s,v) => s+v.huevos, 0);
+  document.getElementById('a-cm').textContent = new Set(vm.map(v => v.nombre.toLowerCase())).size;
+  document.getElementById('a-im').textContent = fmtCLP(im);
+  const pd = {};
+  vm.forEach(v => { const d = new Date(v.fecha).getDate(); pd[d] = (pd[d]||0) + v.total; });
+  let md = '—', mv = 0;
+  Object.entries(pd).forEach(([d,val]) => { if(val > mv){ mv = val; md = 'Día ' + d + ' · ' + fmtShort(val); } });
+  document.getElementById('a-md').textContent = md;
+  const ms = config.metaSemanal, mm = config.metaMensual;
+  const ps = ms > 0 ? Math.min(100, Math.round(is/ms*100)) : 0;
+  const pm = mm > 0 ? Math.min(100, Math.round(im/mm*100)) : 0;
+  document.getElementById('ms-a').textContent = fmtShort(is);
+  document.getElementById('ms-t').textContent = fmtShort(ms);
+  document.getElementById('ms-b').style.width = ps + '%';
+  document.getElementById('ms-p').textContent = ps + '% completado';
+  document.getElementById('mm-a').textContent = fmtShort(im);
+  document.getElementById('mm-t').textContent = fmtShort(mm);
+  document.getElementById('mm-b').style.width = pm + '%';
+  document.getElementById('mm-p').textContent = pm + '% completado';
+  const dm = new Date(now.getFullYear(), mes+1, 0).getDate();
+  const arr = Array.from({length:dm}, (_,i) => pd[i+1]||0);
+  const mx = Math.max(...arr, 1);
+  document.getElementById('a-chart').innerHTML = arr.map((v,i) => {
+    const d = i+1, h = Math.round((v/mx)*75);
+    return `<div class="bc"><div class="b${d===hoy?' on':''}" style="height:${Math.max(h,3)}px" title="Día ${d}: ${fmtCLP(v)}"></div><div class="bl">${d}</div></div>`;
+  }).join('');
+  const by = {};
+  vm.forEach(v => {
+    if(!by[v.sellerId]) by[v.sellerId] = {name:v.sellerName, total:0, count:0};
+    by[v.sellerId].total += v.total;
+    by[v.sellerId].count++;
+  });
+  const rows = Object.values(by).sort((a,b) => b.total - a.total);
+  document.getElementById('sel-brkd').innerHTML = rows.length
+    ? rows.map(r => `<div class="brow"><div class="bav">${r.name[0]}</div><div class="bnm"><span>${r.name}</span><small>${r.count} venta${r.count!==1?'s':''}</small></div><div class="btot">${fmtShort(r.total)}</div></div>`).join('')
+    : '<p style="font-size:0.8rem;color:var(--gris-azul);text-align:center;padding:12px;font-style:italic;">Sin ventas este mes</p>';
 }
+
 function renderAllSales(){
-  const el=document.getElementById('all-sales');
-  el.innerHTML=S.ventas.length?S.ventas.map(v=>sCard(v,true)).join(''):'<div class="empty-st"><div class="ei">📭</div><p>No hay ventas registradas</p></div>';
+  const el = document.getElementById('all-sales');
+  el.innerHTML = ventas.length
+    ? ventas.map(v => sCard(v, true)).join('')
+    : '<div class="empty-st"><div class="ei">📭</div><p>No hay ventas registradas</p></div>';
 }
-function sCard(v,showSel=false){
-  const d=new Date(v.fecha),ds=d.toLocaleDateString('es-CL',{day:'2-digit',month:'short'})+' '+d.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'});
-  return`<div class="sale-item"><div class="sale-av">${v.nombre[0].toUpperCase()}</div><div class="sale-info"><div class="sale-name">${v.nombre}</div><div class="sale-meta">${v.cantidad} ${v.tipoNombre} · ${ds}${showSel?' · '+v.sellerName:''}</div></div><div class="sale-right"><div class="sale-tot">${fmtCLP(v.total)}</div><div class="sale-id">${v.id}</div></div></div>`;
+
+function sCard(v, showSel=false){
+  const d = new Date(v.fecha);
+  const ds = d.toLocaleDateString('es-CL', {day:'2-digit', month:'short'}) + ' ' + d.toLocaleTimeString('es-CL', {hour:'2-digit', minute:'2-digit'});
+  return `<div class="sale-item"><div class="sale-av">${v.nombre[0].toUpperCase()}</div><div class="sale-info"><div class="sale-name">${v.nombre}</div><div class="sale-meta">${v.cantidad} ${v.tipoNombre} · ${ds}${showSel?' · '+v.sellerName:''}</div></div><div class="sale-right"><div class="sale-tot">${fmtCLP(v.total)}</div><div class="sale-id">${v.id}</div></div></div>`;
 }
-function limpiar(){if(confirm('¿Eliminar TODAS las ventas?')){S.ventas=[];saveS();renderAllSales();updDash();toast('Ventas eliminadas');}}
+
+function limpiar(){
+  if(confirm('¿Eliminar TODAS las ventas?')){ ventas = []; guardar(); renderAllSales(); updDash(); toast('Ventas eliminadas'); }
+}
 
 function renderAdminRevs(){
-  const avg=S.reviews.length?Math.round(S.reviews.reduce((s,r)=>s+r.estrellas,0)/S.reviews.length*10)/10:0;
-  document.getElementById('avg-stars').textContent=S.reviews.length?'★'.repeat(Math.round(avg))+'☆'.repeat(5-Math.round(avg)):'—';
-  document.getElementById('avg-txt').textContent=S.reviews.length?`${avg} de 5 · ${S.reviews.length} evaluación${S.reviews.length!==1?'es':''}` :'Sin evaluaciones aún';
-  const el=document.getElementById('admin-reviews');
-  if(!S.reviews.length){el.innerHTML='<div class="empty-st"><div class="ei">💬</div><p>Aún no hay evaluaciones</p></div>';return;}
-  el.innerHTML=S.reviews.map(r=>{
-    const d=new Date(r.fecha),ds=d.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'});
-    const stars='★'.repeat(r.estrellas)+'☆'.repeat(5-r.estrellas);
-    return`<div class="rev-card"><div class="rev-header"><div><div class="rev-name">${r.nombre}</div><div class="rev-date">${ds}</div></div><div class="rev-stars">${stars}</div></div><div class="rev-text">${r.texto}</div></div>`;
+  const avg = reviews.length ? Math.round(reviews.reduce((s,r) => s+r.estrellas, 0)/reviews.length*10)/10 : 0;
+  document.getElementById('avg-stars').textContent = reviews.length ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5-Math.round(avg)) : '—';
+  document.getElementById('avg-txt').textContent = reviews.length ? `${avg} de 5 · ${reviews.length} evaluación${reviews.length!==1?'es':''}` : 'Sin evaluaciones aún';
+  const el = document.getElementById('admin-reviews');
+  if(!reviews.length){ el.innerHTML = '<div class="empty-st"><div class="ei">💬</div><p>Aún no hay evaluaciones</p></div>'; return; }
+  el.innerHTML = reviews.map(r => {
+    const d = new Date(r.fecha);
+    const ds = d.toLocaleDateString('es-CL', {day:'2-digit', month:'short', year:'numeric'});
+    const stars = '★'.repeat(r.estrellas) + '☆'.repeat(5-r.estrellas);
+    return `<div class="rev-card"><div class="rev-header"><div><div class="rev-name">${r.nombre}</div><div class="rev-date">${ds}</div></div><div class="rev-stars">${stars}</div></div><div class="rev-text">${r.texto}</div></div>`;
   }).join('');
 }
 
 function renderUsers(){
-  document.getElementById('users-list').innerHTML=S.users.map(u=>`<div class="user-row"><div class="user-info"><span>${u.name}</span><small>${u.role==='admin'?'Administrador':'Vendedor'}</small></div><div style="display:flex;align-items:center;gap:8px;"><span class="rpill ${u.role}">${u.role==='admin'?'ADMIN':'VEND.'}</span>${u.role!=='admin'?`<button class="btn-del" onclick="delUser('${u.id}')">✕</button>`:''}</div></div>`).join('');
+  document.getElementById('users-list').innerHTML = usuarios.map(u =>
+    `<div class="user-row"><div class="user-info"><span>${u.name}</span><small>${u.role==='admin'?'Administrador':'Vendedor'}</small></div><div style="display:flex;align-items:center;gap:8px;"><span class="rpill ${u.role}">${u.role==='admin'?'ADMIN':'VEND.'}</span>${u.role!=='admin'?`<button class="btn-del" onclick="delUser('${u.id}')">✕</button>`:''}</div></div>`
+  ).join('');
 }
-function openAddUser(){document.getElementById('nu-n').value='';document.getElementById('nu-p').value='';openModal('mod-user');}
+
+function openAddUser(){ document.getElementById('nu-n').value=''; document.getElementById('nu-p').value=''; openModal('mod-user'); }
+
 function addUser(){
-  const n=document.getElementById('nu-n').value.trim(),p=document.getElementById('nu-p').value.trim();
-  if(!n||!p){toast('Completa nombre y contraseña');return;}
-  S.users.push({id:'u'+Date.now(),name:n,role:'vendedor',pass:p});
-  saveS();closeModal('mod-user');renderUsers();fillSel();toast('Vendedor agregado ✓');
+  const n = document.getElementById('nu-n').value.trim();
+  const p = document.getElementById('nu-p').value.trim();
+  if(!n||!p){ toast('Completa nombre y contraseña'); return; }
+  usuarios.push({id:'u'+Date.now(), name:n, role:'vendedor', pass:p});
+  guardar(); closeModal('mod-user'); renderUsers(); fillSel(); toast('Vendedor agregado ✓');
 }
-function delUser(id){if(!confirm('¿Eliminar este vendedor?'))return;S.users=S.users.filter(u=>u.id!==id);saveS();renderUsers();fillSel();toast('Eliminado');}
+
+function delUser(id){
+  if(!confirm('¿Eliminar este vendedor?')) return;
+  usuarios = usuarios.filter(u => u.id !== id);
+  guardar(); renderUsers(); fillSel(); toast('Eliminado');
+}
 
 function loadCfg(){
-  document.getElementById('cfg-banco').value=S.config.banco;
-  document.getElementById('cfg-tit').value=S.config.titular;
-  document.getElementById('cfg-cta').value=S.config.cuenta;
-  document.getElementById('cfg-p12').value=S.config.precios.docena;
-  document.getElementById('cfg-p6').value=S.config.precios.media;
+  document.getElementById('cfg-banco').value = config.banco;
+  document.getElementById('cfg-tit').value = config.titular;
+  document.getElementById('cfg-cta').value = config.cuenta;
+  document.getElementById('cfg-p12').value = config.precios.docena;
+  document.getElementById('cfg-p6').value = config.precios.media;
 }
-function saveBank(){S.config.banco=document.getElementById('cfg-banco').value.trim();S.config.titular=document.getElementById('cfg-tit').value.trim();S.config.cuenta=document.getElementById('cfg-cta').value.trim();saveS();toast('Datos bancarios guardados ✓');}
-function savePrices(){S.config.precios.docena=parseFloat(document.getElementById('cfg-p12').value)||4000;S.config.precios.media=parseFloat(document.getElementById('cfg-p6').value)||2000;saveS();toast('Precios actualizados ✓');}
-function changePass(){const np=document.getElementById('cfg-pass').value.trim();if(!np){toast('Ingresa la nueva contraseña');return;}const a=S.users.find(u=>u.role==='admin');if(a)a.pass=np;saveS();toast('Contraseña actualizada ✓');}
 
-function openMeta(t){metaEd=t;document.getElementById('mod-meta-t').textContent=t==='s'?'META SEMANAL':'META MENSUAL';document.getElementById('mod-meta-v').value=t==='s'?S.config.metaSemanal:S.config.metaMensual;openModal('mod-meta');}
-function saveMeta(){const v=parseFloat(document.getElementById('mod-meta-v').value)||0;if(metaEd==='s')S.config.metaSemanal=v;else S.config.metaMensual=v;saveS();closeModal('mod-meta');updDash();toast('Meta guardada ✓');}
+function saveBank(){
+  config.banco = document.getElementById('cfg-banco').value.trim();
+  config.titular = document.getElementById('cfg-tit').value.trim();
+  config.cuenta = document.getElementById('cfg-cta').value.trim();
+  guardar(); toast('Datos bancarios guardados ✓');
+}
+
+function savePrices(){
+  config.precios.docena = parseFloat(document.getElementById('cfg-p12').value) || 4000;
+  config.precios.media = parseFloat(document.getElementById('cfg-p6').value) || 2000;
+  guardar(); toast('Precios actualizados ✓');
+}
+
+function changePass(){
+  const np = document.getElementById('cfg-pass').value.trim();
+  if(!np){ toast('Ingresa la nueva contraseña'); return; }
+  const a = usuarios.find(u => u.role === 'admin');
+  if(a) a.pass = np;
+  guardar(); toast('Contraseña actualizada ✓');
+}
+
+function openMeta(t){
+  metaEd = t;
+  document.getElementById('mod-meta-t').textContent = t === 's' ? 'META SEMANAL' : 'META MENSUAL';
+  document.getElementById('mod-meta-v').value = t === 's' ? config.metaSemanal : config.metaMensual;
+  openModal('mod-meta');
+}
+
+function saveMeta(){
+  const v = parseFloat(document.getElementById('mod-meta-v').value) || 0;
+  if(metaEd === 's') config.metaSemanal = v;
+  else config.metaMensual = v;
+  guardar(); closeModal('mod-meta'); updDash(); toast('Meta guardada ✓');
+}
 
 function exportCSV(){
-  const rows=[['Código','Cliente','Teléfono','Producto','Cantidad','Precio Unit.','Descuento','Total','Huevos','Vendedor','Fecha']];
-  S.ventas.forEach(v=>{const d=new Date(v.fecha);rows.push([v.id,v.nombre,v.tel||'',v.tipoNombre,v.cantidad,v.precioUnit,v.descuento,v.total,v.huevos,v.sellerName,d.toLocaleString('es-CL')]);});
-  const csv=rows.map(r=>r.map(c=>`"${c}"`).join(',')).join('\n');
-  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);a.download='elkan_ventas_'+new Date().toISOString().slice(0,10)+'.csv';a.click();toast('CSV descargado ✓');
+  const rows = [['Código','Cliente','Teléfono','Producto','Cantidad','Precio Unit.','Descuento','Total','Huevos','Vendedor','Fecha']];
+  ventas.forEach(v => {
+    const d = new Date(v.fecha);
+    rows.push([v.id, v.nombre, v.tel||'', v.tipoNombre, v.cantidad, v.precioUnit, v.descuento, v.total, v.huevos, v.sellerName, d.toLocaleString('es-CL')]);
+  });
+  const csv = rows.map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,\uFEFF' + encodeURIComponent(csv);
+  a.download = 'elkan_ventas_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+  toast('CSV descargado ✓');
 }
 
-// ── BOOT ──
+// ══ BOOT ══
 function boot(){
-  S = loadS();
+  cargar();
   fillSel();
-  const p=new URLSearchParams(window.location.search);
-  if(p.get('seller')){showScr('screen-client');initClient();return;}
+  const p = new URLSearchParams(window.location.search);
+  if(p.get('seller')){ showScr('screen-client'); initClient(); return; }
   showScr('screen-login');
 }
+
 boot();
 </script>
 </body>

@@ -745,6 +745,8 @@ const DEF={
 
 // Memoria en RAM como respaldo cuando localStorage no está disponible
 let _memStore = null;
+let S = null;
+let CU = null, loginRole = 'vendedor', metaEd = '', qty = 1, selStar = 0;
 
 function loadS(){
   try{
@@ -788,9 +790,9 @@ function setRole(r,el){
 function fillSel(){
   const s=document.getElementById('l-sel');
   s.innerHTML='<option value="">Selecciona tu nombre…</option>';
-  // Siempre incluir los usuarios base
+  const users = (S&&S.users)?S.users:DEF.users;
   const vendedores=DEF.users.filter(u=>u.role==='vendedor');
-  (S.users||[]).filter(u=>u.role==='vendedor'&&!DEF.users.find(d=>d.id===u.id)).forEach(u=>vendedores.push(u));
+  users.filter(u=>u.role==='vendedor'&&!DEF.users.find(d=>d.id===u.id)).forEach(u=>vendedores.push(u));
   vendedores.forEach(u=>{s.innerHTML+=`<option value="${u.id}">${u.name}</option>`;});
 }
 function doLogin(){
@@ -798,13 +800,13 @@ function doLogin(){
   const err=document.getElementById('l-err');err.style.display='none';
   if(!pass){err.textContent='Ingresa tu contraseña';err.style.display='block';return;}
   // Siempre verificar contra DEF.users primero — funciona sin localStorage
+  const savedUsers=(S&&S.users)?S.users:[];
   const allUsers=DEF.users.map(d=>{
-    const saved=(S.users||[]).find(u=>u.id===d.id);
+    const saved=savedUsers.find(u=>u.id===d.id);
     return saved||d;
   });
-  // Agregar vendedores extra que se hayan creado
-  (S.users||[]).forEach(u=>{ if(!allUsers.find(a=>a.id===u.id)) allUsers.push(u); });
-  S.users=allUsers;
+  savedUsers.forEach(u=>{ if(!allUsers.find(a=>a.id===u.id)) allUsers.push(u); });
+  if(S) S.users=allUsers;
   if(loginRole==='admin'){
     const adm=allUsers.find(u=>u.role==='admin'&&u.pass===pass);
     if(adm){CU=adm;showScr('screen-admin');initAdmin();return;}
@@ -1031,6 +1033,7 @@ function exportCSV(){
 
 // ── BOOT ──
 function boot(){
+  S = loadS();
   fillSel();
   const p=new URLSearchParams(window.location.search);
   if(p.get('seller')){showScr('screen-client');initClient();return;}

@@ -729,7 +729,7 @@ body{font-family:'Lora',serif;background:var(--azul-prof);color:var(--blanco);mi
 
 <script>
 // ══════════════════════════════
-// STATE
+// STATE — compatible iPhone Safari, Android Chrome, todos los navegadores
 // ══════════════════════════════
 const DEF={
   ventas:[],reviews:[],
@@ -742,13 +742,30 @@ const DEF={
     {id:'u4',name:'Rayén',role:'vendedor',pass:'rayen123'}
   ]
 };
-let S=loadS(),CU=null,loginRole='vendedor',metaEd='',qty=1,selStar=0;
+
+// Memoria en RAM como respaldo cuando localStorage no está disponible
+let _memStore = null;
 
 function loadS(){
-  try{const s=localStorage.getItem('elkan_v1');if(s){const p=JSON.parse(s);return{...DEF,...p,config:{...DEF.config,...p.config,precios:{...DEF.config.precios,...(p.config?.precios||{})}},users:p.users||DEF.users,reviews:p.reviews||[]};}}catch(e){}
+  try{
+    const raw=localStorage.getItem('elkan_v1');
+    if(raw){
+      const p=JSON.parse(raw);
+      // Siempre asegurar que los usuarios base estén presentes
+      const savedUsers=p.users||[];
+      const mergedUsers=[...DEF.users];
+      savedUsers.forEach(u=>{ if(!mergedUsers.find(d=>d.id===u.id)) mergedUsers.push(u); });
+      return{...DEF,...p,config:{...DEF.config,...p.config,precios:{...DEF.config.precios,...(p.config?.precios||{})}},users:mergedUsers,reviews:p.reviews||[]};
+    }
+  }catch(e){ console.log('localStorage no disponible, usando RAM'); }
+  if(_memStore) return _memStore;
   return JSON.parse(JSON.stringify(DEF));
 }
-function saveS(){localStorage.setItem('elkan_v1',JSON.stringify(S));}
+
+function saveS(){
+  _memStore = S;
+  try{ localStorage.setItem('elkan_v1',JSON.stringify(S)); }catch(e){ console.log('Guardado en RAM'); }
+}
 
 // HELPERS
 const fmtCLP=n=>'$'+Math.round(n).toLocaleString('es-CL');
@@ -771,22 +788,31 @@ function setRole(r,el){
 function fillSel(){
   const s=document.getElementById('l-sel');
   s.innerHTML='<option value="">Selecciona tu nombre…</option>';
-  S.users.filter(u=>u.role==='vendedor').forEach(u=>{s.innerHTML+=`<option value="${u.id}">${u.name}</option>`;});
+  // Siempre incluir los usuarios base
+  const vendedores=DEF.users.filter(u=>u.role==='vendedor');
+  (S.users||[]).filter(u=>u.role==='vendedor'&&!DEF.users.find(d=>d.id===u.id)).forEach(u=>vendedores.push(u));
+  vendedores.forEach(u=>{s.innerHTML+=`<option value="${u.id}">${u.name}</option>`;});
 }
 function doLogin(){
   const pass=document.getElementById('l-pass').value.trim();
   const err=document.getElementById('l-err');err.style.display='none';
   if(!pass){err.textContent='Ingresa tu contraseña';err.style.display='block';return;}
+  // Siempre verificar contra DEF.users primero — funciona sin localStorage
+  const allUsers=DEF.users.map(d=>{
+    const saved=(S.users||[]).find(u=>u.id===d.id);
+    return saved||d;
+  });
+  // Agregar vendedores extra que se hayan creado
+  (S.users||[]).forEach(u=>{ if(!allUsers.find(a=>a.id===u.id)) allUsers.push(u); });
+  S.users=allUsers;
   if(loginRole==='admin'){
-    const adm=S.users.find(u=>u.role==='admin');
-    if(adm&&adm.pass===pass){CU=adm;showScr('screen-admin');initAdmin();return;}
-    // fallback
-    if(pass==='cristobal123'){CU=DEF.users[0];showScr('screen-admin');initAdmin();return;}
+    const adm=allUsers.find(u=>u.role==='admin'&&u.pass===pass);
+    if(adm){CU=adm;showScr('screen-admin');initAdmin();return;}
   }else{
     const id=document.getElementById('l-sel').value;
     if(!id){err.textContent='Selecciona tu nombre';err.style.display='block';return;}
-    const u=S.users.find(u=>u.id===id);
-    if(u&&u.pass===pass){CU=u;showScr('screen-seller');initSeller();return;}
+    const u=allUsers.find(u=>u.id===id&&u.pass===pass);
+    if(u){CU=u;showScr('screen-seller');initSeller();return;}
   }
   err.textContent='Contraseña incorrecta';err.style.display='block';
 }
